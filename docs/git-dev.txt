@@ -1,0 +1,37 @@
+
+
+Following is the location of iShipSafe code repository:
+  https://gitlab.com/issadmin/iss-application
+
+Following are the steps to configure git and clone iShipSafe code repository:
+Configure git:
+    Use one of the following commands to install git
+        “sudo yum install git” or “sudo apt-get install git”
+    Generate SSH key and add it on Gitlab account:
+        Use “ssh-keygen” to generate SSH key
+        Let ssh-keygen use default inputs and do not need to specify password.
+        ssh-keygen by default writes SSH key in “~/.ssh/id_rsa.pub “
+    Copy SSH key from ~/.ssh/id_rsa.pub 
+    Login using Gitlab account and add SSH key in https://gitlab.com/profile/keys
+    (Above process gives your permission to use git commands on dev machine)
+
+Configure username and email on dev machine:
+    git config —global user.name <user_or_username>
+    git config —global user.email <emailid>
+Git configuration can be displayed using ‘git config —list’ command
+
+URL to access you feature branch:
+   https://gitlab.com/issadmin/iss-application/tree/<userid>/
+
+Clone iShipSafe code repository:
+  git clone git@gitlab.com:issadmin/iss-application.git -b <branch_name>
+
+
+Ref:
+https://confluence.atlassian.com/display/STASH/Basic+Git+commands
+https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf
+http://www.git-tower.com/blog/content/posts/54-git-cheat-sheet/git-cheat-sheet-large01.png
+https://docs.moodle.org/dev/Git_for_developers
+https://git-scm.com/docs/everyday
+https://www.kernel.org/pub/software/scm/git/docs/giteveryday.html
+
