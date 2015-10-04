@@ -4,9 +4,10 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from rest_framework.decorators import api_view
-from ishipsafe.models import pricing
-from ishipsafe.iss_serializer import PriceListingSerializer
+from ishipsafe.models import pricing, subscribe
+from ishipsafe.iss_serializer import PriceListingSerializer, SubscribeSerializer
 import json
+from django.core.mail import send_mail
 
 # Create your views here.
 class JSONResponse(HttpResponse):
@@ -41,3 +42,24 @@ def pricelisting_detail(request):
 		serializer = PriceListingSerializer(price)
 		return JSONResponse(serializer.data)
 
+@api_view(['POST'])
+def subscribe(request):
+
+
+	if request.method == 'POST':
+
+		try:
+			validated_data = {}
+			validated_data['email'] = request.data['email']
+
+			serializer = SubscribeSerializer(data=request.data)
+			if serializer.is_valid():
+				serializer.save()
+				send_mail('ishipsafe', 'You have subscribed to ishipsafe news letter..', 'ishipsafe@gmail.com', ['nagaraj.batta@gmail.com'], fail_silently=False)
+			return JSONResponse(serializer.data)
+
+		except Exception as e:
+			print (e)
+			return HttpResponse(status=404)
+
+		
