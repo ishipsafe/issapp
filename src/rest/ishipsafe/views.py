@@ -7,7 +7,11 @@ from rest_framework.decorators import api_view
 from ishipsafe.models import pricing, subscribe
 from ishipsafe.iss_serializer import PriceListingSerializer, SubscribeSerializer
 import json
-from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.core.mail import send_mail, EmailMessage
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import get_template
+import os
 
 # Create your views here.
 class JSONResponse(HttpResponse):
@@ -55,10 +59,37 @@ def subscribe(request):
 			serializer = SubscribeSerializer(data=request.data)
 			if serializer.is_valid():
 				serializer.save()
-				send_mail('ishipsafe', 'You have subscribed to ishipsafe news letter..', 'ishipsafe@gmail.com', ['nagaraj.batta@gmail.com'], fail_silently=False)
+
+				subject = "ishipsafe"
+				to = ['nagaraj.batta@gmail.com', 'vaish.arry@gmail.com']
+
+				module_dir = os.path.dirname(__file__)
+				file_path = os.path.join(module_dir, 'email.txt')
+				file_path1 = os.path.join(module_dir, 'email.html')
+
+				"""plaintext = get_template(file_path)
+				htmly     = get_template(file_path1)"""
+
+				f = open(file_path, 'r')
+				d = f.read()
+
+				f1 = open(file_path1, 'r')
+				d1 = f1.read()
+
+				"""text_content = plaintext.render(d)
+				html_content = htmly.render(d1)"""
+
+				msg = EmailMultiAlternatives(subject, d, 'ishipsafe@gmail.com', to)
+				msg.attach_alternative(d1, "text/html")
+				#print ("eoorrrr")
+				msg.send()
+
+				#send_mail(subject, d, 'ishipsafe@gmail.com', to, fail_silently=False)
+
 			return JSONResponse(serializer.data)
 
 		except Exception as e:
+			print ("hi there")
 			print (e)
 			return HttpResponse(status=404)
 
