@@ -1,0 +1,33 @@
+doctype
+html
+  head
+    title #{title} - iShipSafe
+    link(rel='stylesheet', href='/stylesheets/css/materialize.css', media="screen,projection")
+    link(rel='stylesheet', href='/stylesheets/css/style.css', media="screen,projection")
+    link(rel='stylesheet', href='/stylesheets/min/plugin-min.css', media="screen,projection")
+    link(rel='stylesheet', href='/stylesheets/min/custom-min.css', media="screen,projection")
+    script(type='text/javascript' src='/stylesheets/min/plugin-min.js')
+    script(type='text/javascript' src='/stylesheets/min/custom-min.js')
+  body#top.scrollspy
+    #index-banner.section.no-pad-bot
+      .navbar.transparent.navbar-inverse.navbar-fixed
+        nav#nav_f.navbar-inner
+          .container
+            .nav-wrapper
+              a#logo-container.brand-logo(href="#top") iShipSafe
+              ul#nav-mobile.right.side-nav
+                li
+                  a(href="#") Home
+                li
+                  a(href="#work") Destinations
+                li
+                  a(href="#contact") Contact
+              a.button-collapse(href="#", data-activates="nav-mobile")
+                i.mdi-navigation-menu
+    .container
+      .main-content
+        block content
+      .sidebar
+        block sidebar
+    footer
+      p Running on node with Express, Jade and Stylus
