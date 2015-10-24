@@ -1,5 +1,5 @@
 This repository contains source code and configuration related to ISS application.
-
+This repository contains work related to Sender UI screens.
 
 ## Test changes ABC
 
