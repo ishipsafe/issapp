@@ -29,5 +29,9 @@
   "Account": {
     "dataSource": "accountDs",
     "public": true
+  },
+  "IshipsafeSubscriber": {
+    "dataSource": "accountDs",
+    "public": true
   }
 }
