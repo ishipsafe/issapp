@@ -1,30 +1,44 @@
 
 
 Following is the location of iShipSafe code repository:
-  https://gitlab.com/issadmin/iss-application
+  https://github.com/ishipsafe/issapp
 
 Following are the steps to configure git and clone iShipSafe code repository:
 Configure git:
     Use one of the following commands to install git
         “sudo yum install git” or “sudo apt-get install git”
-    Generate SSH key and add it on Gitlab account:
+    Generate SSH key and add it on github account:
         Use “ssh-keygen” to generate SSH key
         Let ssh-keygen use default inputs and do not need to specify password.
         ssh-keygen by default writes SSH key in “~/.ssh/id_rsa.pub “
     Copy SSH key from ~/.ssh/id_rsa.pub 
-    Login using Gitlab account and add SSH key in https://gitlab.com/profile/keys
+    Login using github account and add SSH key in https://github.com/settings/ssh
     (Above process gives your permission to use git commands on dev machine)
 
 Configure username and email on dev machine:
-    git config —global user.name <user_or_username>
-    git config —global user.email <emailid>
-Git configuration can be displayed using ‘git config —list’ command
-
-URL to access you feature branch:
-   https://gitlab.com/issadmin/iss-application/tree/<userid>/
+    git config —-global user.name <user_or_username>
+    git config —-global user.email <emailid>
+Git configuration can be displayed using ‘git config —-list’ command
 
 Clone iShipSafe code repository:
-  git clone git@gitlab.com:issadmin/iss-application.git -b <branch_name>
+  git clone git@github.com:ishipsafe/issapp.git
+
+Follow this before any commit:
+git checkout master
+git pull
+git checkout dev
+git pull
+git checkout <YourBranch>
+git pull
+git merge dev
+git commit -am "<Comment>"
+git push
+
+Go to https://github.com/ishipsafe/issapp
+Click on create pull request
+Change the base tree from master to dev
+Verify your changes are visible at the bottom of the page
+Submit
 
 
 Ref:
