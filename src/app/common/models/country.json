@@ -1,5 +1,5 @@
 {
-  "name": "IshipsafeSubscriber",
+  "name": "Country",
   "base": "PersistedModel",
   "idInjection": false,
   "options": {
@@ -7,10 +7,10 @@
   },
   "postgresql": {
     "schema": "public",
-    "table": "ishipsafe_subscribe"
+    "table": "country"
   },
   "properties": {
-    "subscribeId": {
+    "countryId": {
       "type": "String",
       "id": true,
       "required": true,
@@ -18,7 +18,7 @@
       "precision": null,
       "scale": null,
       "postgresql": {
-        "columnName": "subscribe_id",
+        "columnName": "country_id",
         "dataType": "uuid",
         "dataLength": null,
         "dataPrecision": null,
@@ -27,33 +27,34 @@
       },
       "_selectable": false
     },
-    "email": {
+    "countryName": {
       "type": "String",
       "required": true,
-      "length": null,
+      "length": 128,
       "precision": null,
       "scale": null,
       "postgresql": {
-        "columnName": "email",
+        "columnName": "country_name",
         "dataType": "character varying",
-        "dataLength": null,
+        "dataLength": 128,
         "dataPrecision": null,
         "dataScale": null,
         "nullable": "NO"
       },
       "_selectable": false
     },
-    "role": {
+    "countryCode": {
       "type": "String",
       "required": true,
-      "length": null,
+      "length": 15,
       "precision": null,
       "scale": null,
       "postgresql": {
-        "columnName": "email",
+        "columnName": "country_code",
         "dataType": "character varying",
-        "dataLength": null,
+        "dataLength": 15,
         "dataPrecision": null,
+        "dataScale": null,
         "nullable": "NO"
       },
       "_selectable": false

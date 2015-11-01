@@ -1,5 +1,5 @@
 {
-  "name": "IshipsafeSubscriber",
+  "name": "BundlePackageMapping",
   "base": "PersistedModel",
   "idInjection": false,
   "options": {
@@ -7,18 +7,34 @@
   },
   "postgresql": {
     "schema": "public",
-    "table": "ishipsafe_subscribe"
+    "table": "bundle_package_mapping"
   },
   "properties": {
-    "subscribeId": {
-      "type": "String",
+    "id": {
+      "type": "Number",
       "id": true,
+      "required": true,
+      "length": null,
+      "precision": 32,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "id",
+        "dataType": "integer",
+        "dataLength": null,
+        "dataPrecision": 32,
+        "dataScale": 0,
+        "nullable": "NO"
+      },
+      "_selectable": false
+    },
+    "bundleIdId": {
+      "type": "String",
       "required": true,
       "length": null,
       "precision": null,
       "scale": null,
       "postgresql": {
-        "columnName": "subscribe_id",
+        "columnName": "bundle_id_id",
         "dataType": "uuid",
         "dataLength": null,
         "dataPrecision": null,
@@ -27,33 +43,18 @@
       },
       "_selectable": false
     },
-    "email": {
-      "type": "String",
+    "packageIdId": {
+      "type": "Number",
       "required": true,
       "length": null,
-      "precision": null,
-      "scale": null,
+      "precision": 32,
+      "scale": 0,
       "postgresql": {
-        "columnName": "email",
-        "dataType": "character varying",
+        "columnName": "package_id_id",
+        "dataType": "integer",
         "dataLength": null,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "NO"
-      },
-      "_selectable": false
-    },
-    "role": {
-      "type": "String",
-      "required": true,
-      "length": null,
-      "precision": null,
-      "scale": null,
-      "postgresql": {
-        "columnName": "email",
-        "dataType": "character varying",
-        "dataLength": null,
-        "dataPrecision": null,
+        "dataPrecision": 32,
+        "dataScale": 0,
         "nullable": "NO"
       },
       "_selectable": false

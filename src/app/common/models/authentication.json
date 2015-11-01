@@ -1,5 +1,5 @@
 {
-  "name": "IshipsafeSubscriber",
+  "name": "Authentication",
   "base": "PersistedModel",
   "idInjection": false,
   "options": {
@@ -7,22 +7,22 @@
   },
   "postgresql": {
     "schema": "public",
-    "table": "ishipsafe_subscribe"
+    "table": "authentication"
   },
   "properties": {
-    "subscribeId": {
-      "type": "String",
+    "id": {
+      "type": "Number",
       "id": true,
       "required": true,
       "length": null,
-      "precision": null,
-      "scale": null,
+      "precision": 32,
+      "scale": 0,
       "postgresql": {
-        "columnName": "subscribe_id",
-        "dataType": "uuid",
+        "columnName": "id",
+        "dataType": "integer",
         "dataLength": null,
-        "dataPrecision": null,
-        "dataScale": null,
+        "dataPrecision": 32,
+        "dataScale": 0,
         "nullable": "NO"
       },
       "_selectable": false
@@ -30,30 +30,31 @@
     "email": {
       "type": "String",
       "required": true,
-      "length": null,
+      "length": 254,
       "precision": null,
       "scale": null,
       "postgresql": {
         "columnName": "email",
         "dataType": "character varying",
-        "dataLength": null,
+        "dataLength": 254,
         "dataPrecision": null,
         "dataScale": null,
         "nullable": "NO"
       },
       "_selectable": false
     },
-    "role": {
+    "userIdId": {
       "type": "String",
       "required": true,
       "length": null,
       "precision": null,
       "scale": null,
       "postgresql": {
-        "columnName": "email",
-        "dataType": "character varying",
+        "columnName": "user_id_id",
+        "dataType": "uuid",
         "dataLength": null,
         "dataPrecision": null,
+        "dataScale": null,
         "nullable": "NO"
       },
       "_selectable": false

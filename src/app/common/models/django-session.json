@@ -1,5 +1,5 @@
 {
-  "name": "IshipsafeSubscriber",
+  "name": "DjangoSession",
   "base": "PersistedModel",
   "idInjection": false,
   "options": {
@@ -7,19 +7,35 @@
   },
   "postgresql": {
     "schema": "public",
-    "table": "ishipsafe_subscribe"
+    "table": "django_session"
   },
   "properties": {
-    "subscribeId": {
+    "sessionKey": {
       "type": "String",
       "id": true,
       "required": true,
+      "length": 40,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "session_key",
+        "dataType": "character varying",
+        "dataLength": 40,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "NO"
+      },
+      "_selectable": false
+    },
+    "sessionData": {
+      "type": "String",
+      "required": true,
       "length": null,
       "precision": null,
       "scale": null,
       "postgresql": {
-        "columnName": "subscribe_id",
-        "dataType": "uuid",
+        "columnName": "session_data",
+        "dataType": "text",
         "dataLength": null,
         "dataPrecision": null,
         "dataScale": null,
@@ -27,33 +43,18 @@
       },
       "_selectable": false
     },
-    "email": {
+    "expireDate": {
       "type": "String",
       "required": true,
       "length": null,
       "precision": null,
       "scale": null,
       "postgresql": {
-        "columnName": "email",
-        "dataType": "character varying",
+        "columnName": "expire_date",
+        "dataType": "timestamp with time zone",
         "dataLength": null,
         "dataPrecision": null,
         "dataScale": null,
-        "nullable": "NO"
-      },
-      "_selectable": false
-    },
-    "role": {
-      "type": "String",
-      "required": true,
-      "length": null,
-      "precision": null,
-      "scale": null,
-      "postgresql": {
-        "columnName": "email",
-        "dataType": "character varying",
-        "dataLength": null,
-        "dataPrecision": null,
         "nullable": "NO"
       },
       "_selectable": false

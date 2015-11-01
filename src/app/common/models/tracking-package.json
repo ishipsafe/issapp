@@ -1,5 +1,5 @@
 {
-  "name": "IshipsafeSubscriber",
+  "name": "TrackingPackage",
   "base": "PersistedModel",
   "idInjection": false,
   "options": {
@@ -7,10 +7,10 @@
   },
   "postgresql": {
     "schema": "public",
-    "table": "ishipsafe_subscribe"
+    "table": "tracking_package"
   },
   "properties": {
-    "subscribeId": {
+    "trackingPackageId": {
       "type": "String",
       "id": true,
       "required": true,
@@ -18,7 +18,7 @@
       "precision": null,
       "scale": null,
       "postgresql": {
-        "columnName": "subscribe_id",
+        "columnName": "tracking_package_id",
         "dataType": "uuid",
         "dataLength": null,
         "dataPrecision": null,
@@ -27,15 +27,15 @@
       },
       "_selectable": false
     },
-    "email": {
+    "ownerIdId": {
       "type": "String",
       "required": true,
       "length": null,
       "precision": null,
       "scale": null,
       "postgresql": {
-        "columnName": "email",
-        "dataType": "character varying",
+        "columnName": "owner_id_id",
+        "dataType": "uuid",
         "dataLength": null,
         "dataPrecision": null,
         "dataScale": null,
@@ -43,17 +43,34 @@
       },
       "_selectable": false
     },
-    "role": {
+    "packageIdId": {
+      "type": "Number",
+      "required": true,
+      "length": null,
+      "precision": 32,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "package_id_id",
+        "dataType": "integer",
+        "dataLength": null,
+        "dataPrecision": 32,
+        "dataScale": 0,
+        "nullable": "NO"
+      },
+      "_selectable": false
+    },
+    "vendorIdId": {
       "type": "String",
       "required": true,
       "length": null,
       "precision": null,
       "scale": null,
       "postgresql": {
-        "columnName": "email",
-        "dataType": "character varying",
+        "columnName": "vendor_id_id",
+        "dataType": "uuid",
         "dataLength": null,
         "dataPrecision": null,
+        "dataScale": null,
         "nullable": "NO"
       },
       "_selectable": false

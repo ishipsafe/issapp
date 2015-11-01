@@ -1,5 +1,5 @@
 {
-  "name": "IshipsafeSubscriber",
+  "name": "City",
   "base": "PersistedModel",
   "idInjection": false,
   "options": {
@@ -7,10 +7,10 @@
   },
   "postgresql": {
     "schema": "public",
-    "table": "ishipsafe_subscribe"
+    "table": "city"
   },
   "properties": {
-    "subscribeId": {
+    "cityId": {
       "type": "String",
       "id": true,
       "required": true,
@@ -18,7 +18,7 @@
       "precision": null,
       "scale": null,
       "postgresql": {
-        "columnName": "subscribe_id",
+        "columnName": "city_id",
         "dataType": "uuid",
         "dataLength": null,
         "dataPrecision": null,
@@ -27,33 +27,18 @@
       },
       "_selectable": false
     },
-    "email": {
+    "cityName": {
       "type": "String",
       "required": true,
-      "length": null,
+      "length": 128,
       "precision": null,
       "scale": null,
       "postgresql": {
-        "columnName": "email",
+        "columnName": "city_name",
         "dataType": "character varying",
-        "dataLength": null,
+        "dataLength": 128,
         "dataPrecision": null,
         "dataScale": null,
-        "nullable": "NO"
-      },
-      "_selectable": false
-    },
-    "role": {
-      "type": "String",
-      "required": true,
-      "length": null,
-      "precision": null,
-      "scale": null,
-      "postgresql": {
-        "columnName": "email",
-        "dataType": "character varying",
-        "dataLength": null,
-        "dataPrecision": null,
         "nullable": "NO"
       },
       "_selectable": false

@@ -1,5 +1,5 @@
 {
-  "name": "IshipsafeSubscriber",
+  "name": "Bank",
   "base": "PersistedModel",
   "idInjection": false,
   "options": {
@@ -7,10 +7,10 @@
   },
   "postgresql": {
     "schema": "public",
-    "table": "ishipsafe_subscribe"
+    "table": "bank"
   },
   "properties": {
-    "subscribeId": {
+    "bankId": {
       "type": "String",
       "id": true,
       "required": true,
@@ -18,7 +18,7 @@
       "precision": null,
       "scale": null,
       "postgresql": {
-        "columnName": "subscribe_id",
+        "columnName": "bank_id",
         "dataType": "uuid",
         "dataLength": null,
         "dataPrecision": null,
@@ -27,33 +27,50 @@
       },
       "_selectable": false
     },
-    "email": {
+    "bankName": {
       "type": "String",
       "required": true,
-      "length": null,
+      "length": 255,
       "precision": null,
       "scale": null,
       "postgresql": {
-        "columnName": "email",
+        "columnName": "bank_name",
         "dataType": "character varying",
-        "dataLength": null,
+        "dataLength": 255,
         "dataPrecision": null,
         "dataScale": null,
         "nullable": "NO"
       },
       "_selectable": false
     },
-    "role": {
+    "bankCity": {
       "type": "String",
       "required": true,
-      "length": null,
+      "length": 255,
       "precision": null,
       "scale": null,
       "postgresql": {
-        "columnName": "email",
+        "columnName": "bank_city",
         "dataType": "character varying",
-        "dataLength": null,
+        "dataLength": 255,
         "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "NO"
+      },
+      "_selectable": false
+    },
+    "bankCountry": {
+      "type": "String",
+      "required": true,
+      "length": 128,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "bank_country",
+        "dataType": "character varying",
+        "dataLength": 128,
+        "dataPrecision": null,
+        "dataScale": null,
         "nullable": "NO"
       },
       "_selectable": false

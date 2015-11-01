@@ -1,5 +1,5 @@
 {
-  "name": "IshipsafeSubscriber",
+  "name": "Bundle",
   "base": "PersistedModel",
   "idInjection": false,
   "options": {
@@ -7,10 +7,10 @@
   },
   "postgresql": {
     "schema": "public",
-    "table": "ishipsafe_subscribe"
+    "table": "bundle"
   },
   "properties": {
-    "subscribeId": {
+    "bundleId": {
       "type": "String",
       "id": true,
       "required": true,
@@ -18,7 +18,7 @@
       "precision": null,
       "scale": null,
       "postgresql": {
-        "columnName": "subscribe_id",
+        "columnName": "bundle_id",
         "dataType": "uuid",
         "dataLength": null,
         "dataPrecision": null,
@@ -27,33 +27,18 @@
       },
       "_selectable": false
     },
-    "email": {
-      "type": "String",
+    "bunblePrice": {
+      "type": "Number",
       "required": true,
       "length": null,
-      "precision": null,
-      "scale": null,
+      "precision": 10,
+      "scale": 2,
       "postgresql": {
-        "columnName": "email",
-        "dataType": "character varying",
+        "columnName": "bunble_price",
+        "dataType": "numeric",
         "dataLength": null,
-        "dataPrecision": null,
-        "dataScale": null,
-        "nullable": "NO"
-      },
-      "_selectable": false
-    },
-    "role": {
-      "type": "String",
-      "required": true,
-      "length": null,
-      "precision": null,
-      "scale": null,
-      "postgresql": {
-        "columnName": "email",
-        "dataType": "character varying",
-        "dataLength": null,
-        "dataPrecision": null,
+        "dataPrecision": 10,
+        "dataScale": 2,
         "nullable": "NO"
       },
       "_selectable": false

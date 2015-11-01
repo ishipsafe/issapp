@@ -1,5 +1,5 @@
 {
-  "name": "IshipsafeSubscriber",
+  "name": "ItemAirlineCountry",
   "base": "PersistedModel",
   "idInjection": false,
   "options": {
@@ -7,18 +7,34 @@
   },
   "postgresql": {
     "schema": "public",
-    "table": "ishipsafe_subscribe"
+    "table": "item_airline_country"
   },
   "properties": {
-    "subscribeId": {
-      "type": "String",
+    "id": {
+      "type": "Number",
       "id": true,
+      "required": true,
+      "length": null,
+      "precision": 32,
+      "scale": 0,
+      "postgresql": {
+        "columnName": "id",
+        "dataType": "integer",
+        "dataLength": null,
+        "dataPrecision": 32,
+        "dataScale": 0,
+        "nullable": "NO"
+      },
+      "_selectable": false
+    },
+    "airlineIdId": {
+      "type": "String",
       "required": true,
       "length": null,
       "precision": null,
       "scale": null,
       "postgresql": {
-        "columnName": "subscribe_id",
+        "columnName": "airline_id_id",
         "dataType": "uuid",
         "dataLength": null,
         "dataPrecision": null,
@@ -27,15 +43,15 @@
       },
       "_selectable": false
     },
-    "email": {
+    "countryIdId": {
       "type": "String",
       "required": true,
       "length": null,
       "precision": null,
       "scale": null,
       "postgresql": {
-        "columnName": "email",
-        "dataType": "character varying",
+        "columnName": "country_id_id",
+        "dataType": "uuid",
         "dataLength": null,
         "dataPrecision": null,
         "dataScale": null,
@@ -43,17 +59,18 @@
       },
       "_selectable": false
     },
-    "role": {
+    "itemIdId": {
       "type": "String",
       "required": true,
       "length": null,
       "precision": null,
       "scale": null,
       "postgresql": {
-        "columnName": "email",
-        "dataType": "character varying",
+        "columnName": "item_id_id",
+        "dataType": "uuid",
         "dataLength": null,
         "dataPrecision": null,
+        "dataScale": null,
         "nullable": "NO"
       },
       "_selectable": false
