@@ -141,5 +141,9 @@
   "ActivityTracking": {
     "dataSource": "pg",
     "public": true
+  },
+  "IshipsafeSubscriber": {
+    "dataSource": "pg",
+    "public": true
   }
 }
