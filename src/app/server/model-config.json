@@ -26,8 +26,120 @@
     "dataSource": "db",
     "public": false
   },
-  "Account": {
-    "dataSource": "accountDs",
+  "Pricing": {
+    "dataSource": "pg",
+    "public": true
+  },
+  "Country": {
+    "dataSource": "pg",
+    "public": true
+  },
+  "Airlines": {
+    "dataSource": "pg",
+    "public": true
+  },
+  "DisputedBundle": {
+    "dataSource": "pg",
+    "public": true
+  },
+  "ItemsWorth": {
+    "dataSource": "pg",
+    "public": true
+  },
+  "ItemAirlineCountry": {
+    "dataSource": "pg",
+    "public": true
+  },
+  "Bank": {
+    "dataSource": "pg",
+    "public": true
+  },
+  "Currency": {
+    "dataSource": "pg",
+    "public": true
+  },
+  "City": {
+    "dataSource": "pg",
+    "public": true
+  },
+  "Bundle": {
+    "dataSource": "pg",
+    "public": true
+  },
+  "Item": {
+    "dataSource": "pg",
+    "public": true
+  },
+  "TrackingBundle": {
+    "dataSource": "pg",
+    "public": true
+  },
+  "TrackingPackage": {
+    "dataSource": "pg",
+    "public": true
+  },
+  "SenderCompleteTransactions": {
+    "dataSource": "pg",
+    "public": true
+  },
+  "PendingBundleUserAction": {
+    "dataSource": "pg",
+    "public": true
+  },
+  "UserItem": {
+    "dataSource": "pg",
+    "public": true
+  },
+  "SendingPendingTransactions": {
+    "dataSource": "pg",
+    "public": true
+  },
+  "Samplemodel": {
+    "dataSource": "pg",
+    "public": true
+  },
+  "Address": {
+    "dataSource": "pg",
+    "public": true
+  },
+  "BundlePackageMapping": {
+    "dataSource": "pg",
+    "public": true
+  },
+  "CompanyAction": {
+    "dataSource": "pg",
+    "public": true
+  },
+  "ContactNumber": {
+    "dataSource": "pg",
+    "public": true
+  },
+  "Authentication": {
+    "dataSource": "pg",
+    "public": true
+  },
+  "DjangoSession": {
+    "dataSource": "pg",
+    "public": true
+  },
+  "Notifications": {
+    "dataSource": "pg",
+    "public": true
+  },
+  "PendingPackageUserAction": {
+    "dataSource": "pg",
+    "public": true
+  },
+  "Package": {
+    "dataSource": "pg",
+    "public": true
+  },
+  "Iuser": {
+    "dataSource": "pg",
+    "public": true
+  },
+  "ActivityTracking": {
+    "dataSource": "pg",
     "public": true
   }
 }
