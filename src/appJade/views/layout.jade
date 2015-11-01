@@ -44,12 +44,9 @@ html
                 | 
                 | Three easy steps: 
                 ol
-                  li
-                    Send email to iShipSafe@gmail.com. Where and what do you want to send to India?
-                  li 
-                    Know our super-low price estimates. We will pick up your items from your door.
-                  li
-                    Delivery and Safety Guaranteed.
+                  li Send email to iShipSafe@gmail.com. Where and what do you want to send to India?
+                  li Know our super-low price estimates. We will pick up your items from your door.
+                  li Delivery and Safety Guaranteed.
 
           a#logo-container.modal-trigger.btn-flat.btn-icon-main.waves-effect.waves-light.right(href="#Flyer",style="color:#2196F3") 
             i.material-icons Flyer
@@ -61,12 +58,31 @@ html
                 | 
                 | Three easy steps: 
                 ol
-                  li
-                    Send email to iShipSafe@gmail.com. Where and when are you flying to India from bay area?
-                  li 
-                    Know your reward amount. We will drop off items at your door step in bay area.
-                  li
-                    Take these items to India. We will pay you your reward amount that we promised.
+                  li Send email to iShipSafe@gmail.com. Where and when are you flying to India from bay area?
+                  li Know your reward amount. We will drop off items at your door step in bay area.
+                  li Take these items to India. We will pay you your reward amount that we promised.
+          p.heavy.center.black-text Be part of our early adopter program 
+
+        div.container(style="width:70%;margin-right:100px")
+          h4.center.white-text 
+          form.col.s12.center(action='/', method='post')
+            .row
+              .center.input-field.col.s6.black-text
+                i
+                .mdi-communication-email.prefix.blue-text
+                input#icon_email.validate.black-text(name="email" ,type="email")
+                label.blue-text(for='icon_email') Email-id
+                br
+                br
+                input#sender.blue-text(type="checkbox")
+                label(for="sender") Sender
+                input#flyer.blue-text(type="checkbox")
+                label(for="flyer") Flyer
+              .col.input-field.offset-ssubmit
+                button.btn-flat.btn-icon-submit.waves-effect.waves-light(style="background-color:white;border: 1px solid #2196F3;color:#2196F3;height:75px", type="submit") Join Beta
+                  i.mdi-content-send.right.blue-text
+
+
 
       
     footer
