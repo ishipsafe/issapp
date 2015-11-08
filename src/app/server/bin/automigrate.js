@@ -16,10 +16,10 @@ var accounts = [
 ];*/
 var dataSource = app.dataSources.pg;
 
-dataSource.automigrate('Email', function(err) {
+dataSource.automigrate('Subscribe', function(err) {
   if (err) console.log(err);
 
-  var Email = app.models.Email;
+  var Subscribe = app.models.Subscribe;
   //var count = accounts.length;
   /*accounts.forEach(function(account) {
     Email.create(account, function(err, record) {
