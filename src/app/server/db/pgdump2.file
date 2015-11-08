@@ -1,0 +1,2184 @@
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: activity_tracking; Type: TABLE; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE TABLE activity_tracking (
+    id integer NOT NULL,
+    contact_type character varying(15) NOT NULL,
+    "timestamp" timestamp with time zone NOT NULL,
+    user_id_id uuid NOT NULL
+);
+
+
+ALTER TABLE activity_tracking OWNER TO iss;
+
+--
+-- Name: address; Type: TABLE; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE TABLE address (
+    address_id uuid NOT NULL,
+    address_line_1 character varying(128) NOT NULL,
+    address_line_2 character varying(128) NOT NULL,
+    city character varying(128) NOT NULL,
+    state character varying(2) NOT NULL,
+    zip_code integer NOT NULL,
+    is_billing boolean NOT NULL,
+    created timestamp with time zone NOT NULL,
+    modified timestamp with time zone NOT NULL,
+    user_id_id uuid NOT NULL
+);
+
+
+ALTER TABLE address OWNER TO iss;
+
+--
+-- Name: airlines; Type: TABLE; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE TABLE airlines (
+    airline_id uuid NOT NULL,
+    airline_name character varying(128) NOT NULL,
+    prof_airline_code character varying(15) NOT NULL,
+    airline_type character varying(15) NOT NULL,
+    head_office_city character varying(128) NOT NULL,
+    head_office_country character varying(128) NOT NULL
+);
+
+
+ALTER TABLE airlines OWNER TO iss;
+
+--
+-- Name: auth_group; Type: TABLE; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE TABLE auth_group (
+    id integer NOT NULL,
+    name character varying(80) NOT NULL
+);
+
+
+ALTER TABLE auth_group OWNER TO iss;
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE; Schema: public; Owner: iss
+--
+
+CREATE SEQUENCE auth_group_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE auth_group_id_seq OWNER TO iss;
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: iss
+--
+
+ALTER SEQUENCE auth_group_id_seq OWNED BY auth_group.id;
+
+
+--
+-- Name: auth_group_permissions; Type: TABLE; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE TABLE auth_group_permissions (
+    id integer NOT NULL,
+    group_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE auth_group_permissions OWNER TO iss;
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: iss
+--
+
+CREATE SEQUENCE auth_group_permissions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE auth_group_permissions_id_seq OWNER TO iss;
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: iss
+--
+
+ALTER SEQUENCE auth_group_permissions_id_seq OWNED BY auth_group_permissions.id;
+
+
+--
+-- Name: auth_permission; Type: TABLE; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE TABLE auth_permission (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    content_type_id integer NOT NULL,
+    codename character varying(100) NOT NULL
+);
+
+
+ALTER TABLE auth_permission OWNER TO iss;
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE; Schema: public; Owner: iss
+--
+
+CREATE SEQUENCE auth_permission_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE auth_permission_id_seq OWNER TO iss;
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: iss
+--
+
+ALTER SEQUENCE auth_permission_id_seq OWNED BY auth_permission.id;
+
+
+--
+-- Name: auth_user; Type: TABLE; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE TABLE auth_user (
+    id integer NOT NULL,
+    password character varying(128) NOT NULL,
+    last_login timestamp with time zone,
+    is_superuser boolean NOT NULL,
+    username character varying(30) NOT NULL,
+    first_name character varying(30) NOT NULL,
+    last_name character varying(30) NOT NULL,
+    email character varying(254) NOT NULL,
+    is_staff boolean NOT NULL,
+    is_active boolean NOT NULL,
+    date_joined timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE auth_user OWNER TO iss;
+
+--
+-- Name: auth_user_groups; Type: TABLE; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE TABLE auth_user_groups (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    group_id integer NOT NULL
+);
+
+
+ALTER TABLE auth_user_groups OWNER TO iss;
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: iss
+--
+
+CREATE SEQUENCE auth_user_groups_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE auth_user_groups_id_seq OWNER TO iss;
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: iss
+--
+
+ALTER SEQUENCE auth_user_groups_id_seq OWNED BY auth_user_groups.id;
+
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE; Schema: public; Owner: iss
+--
+
+CREATE SEQUENCE auth_user_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE auth_user_id_seq OWNER TO iss;
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: iss
+--
+
+ALTER SEQUENCE auth_user_id_seq OWNED BY auth_user.id;
+
+
+--
+-- Name: auth_user_user_permissions; Type: TABLE; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE TABLE auth_user_user_permissions (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE auth_user_user_permissions OWNER TO iss;
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: iss
+--
+
+CREATE SEQUENCE auth_user_user_permissions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE auth_user_user_permissions_id_seq OWNER TO iss;
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: iss
+--
+
+ALTER SEQUENCE auth_user_user_permissions_id_seq OWNED BY auth_user_user_permissions.id;
+
+
+--
+-- Name: authentication; Type: TABLE; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE TABLE authentication (
+    id integer NOT NULL,
+    email character varying(254) NOT NULL,
+    user_id_id uuid NOT NULL
+);
+
+
+ALTER TABLE authentication OWNER TO iss;
+
+--
+-- Name: bank; Type: TABLE; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE TABLE bank (
+    bank_id uuid NOT NULL,
+    bank_name character varying(255) NOT NULL,
+    bank_city character varying(255) NOT NULL,
+    bank_country character varying(128) NOT NULL
+);
+
+
+ALTER TABLE bank OWNER TO iss;
+
+--
+-- Name: bundle; Type: TABLE; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE TABLE bundle (
+    bundle_id uuid NOT NULL,
+    bunble_price numeric(10,2) NOT NULL
+);
+
+
+ALTER TABLE bundle OWNER TO iss;
+
+--
+-- Name: bundle_package_mapping; Type: TABLE; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE TABLE bundle_package_mapping (
+    id integer NOT NULL,
+    bundle_id_id uuid NOT NULL,
+    package_id_id integer NOT NULL
+);
+
+
+ALTER TABLE bundle_package_mapping OWNER TO iss;
+
+--
+-- Name: city; Type: TABLE; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE TABLE city (
+    city_id uuid NOT NULL,
+    city_name character varying(128) NOT NULL
+);
+
+
+ALTER TABLE city OWNER TO iss;
+
+--
+-- Name: company_action; Type: TABLE; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE TABLE company_action (
+    id integer NOT NULL,
+    company_action_status character varying(15) NOT NULL,
+    user_action_id_id uuid NOT NULL
+);
+
+
+ALTER TABLE company_action OWNER TO iss;
+
+--
+-- Name: contact_number; Type: TABLE; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE TABLE contact_number (
+    mobile_id uuid NOT NULL,
+    mobile_number character varying(128) NOT NULL,
+    mobile_type character varying(15) NOT NULL,
+    created timestamp with time zone NOT NULL,
+    modified timestamp with time zone NOT NULL,
+    user_id_id uuid NOT NULL
+);
+
+
+ALTER TABLE contact_number OWNER TO iss;
+
+--
+-- Name: country; Type: TABLE; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE TABLE country (
+    country_id uuid NOT NULL,
+    country_name character varying(128) NOT NULL,
+    country_code character varying(15) NOT NULL
+);
+
+
+ALTER TABLE country OWNER TO iss;
+
+--
+-- Name: currency; Type: TABLE; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE TABLE currency (
+    currency_id uuid NOT NULL
+);
+
+
+ALTER TABLE currency OWNER TO iss;
+
+--
+-- Name: ishipsafe_activity_tracking_id_seq; Type: SEQUENCE; Schema: public; Owner: iss
+--
+
+CREATE SEQUENCE ishipsafe_activity_tracking_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE ishipsafe_activity_tracking_id_seq OWNER TO iss;
+
+--
+-- Name: ishipsafe_activity_tracking_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: iss
+--
+
+ALTER SEQUENCE ishipsafe_activity_tracking_id_seq OWNED BY activity_tracking.id;
+
+
+--
+-- Name: ishipsafe_authentication_id_seq; Type: SEQUENCE; Schema: public; Owner: iss
+--
+
+CREATE SEQUENCE ishipsafe_authentication_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE ishipsafe_authentication_id_seq OWNER TO iss;
+
+--
+-- Name: ishipsafe_authentication_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: iss
+--
+
+ALTER SEQUENCE ishipsafe_authentication_id_seq OWNED BY authentication.id;
+
+
+--
+-- Name: ishipsafe_bundle_package_mapping_id_seq; Type: SEQUENCE; Schema: public; Owner: iss
+--
+
+CREATE SEQUENCE ishipsafe_bundle_package_mapping_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE ishipsafe_bundle_package_mapping_id_seq OWNER TO iss;
+
+--
+-- Name: ishipsafe_bundle_package_mapping_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: iss
+--
+
+ALTER SEQUENCE ishipsafe_bundle_package_mapping_id_seq OWNED BY bundle_package_mapping.id;
+
+
+--
+-- Name: ishipsafe_company_action_id_seq; Type: SEQUENCE; Schema: public; Owner: iss
+--
+
+CREATE SEQUENCE ishipsafe_company_action_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE ishipsafe_company_action_id_seq OWNER TO iss;
+
+--
+-- Name: ishipsafe_company_action_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: iss
+--
+
+ALTER SEQUENCE ishipsafe_company_action_id_seq OWNED BY company_action.id;
+
+
+--
+-- Name: item_airline_country; Type: TABLE; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE TABLE item_airline_country (
+    id integer NOT NULL,
+    airline_id_id uuid NOT NULL,
+    country_id_id uuid NOT NULL,
+    item_id_id uuid NOT NULL
+);
+
+
+ALTER TABLE item_airline_country OWNER TO iss;
+
+--
+-- Name: ishipsafe_item_airline_country_id_seq; Type: SEQUENCE; Schema: public; Owner: iss
+--
+
+CREATE SEQUENCE ishipsafe_item_airline_country_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE ishipsafe_item_airline_country_id_seq OWNER TO iss;
+
+--
+-- Name: ishipsafe_item_airline_country_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: iss
+--
+
+ALTER SEQUENCE ishipsafe_item_airline_country_id_seq OWNED BY item_airline_country.id;
+
+
+--
+-- Name: items_worth; Type: TABLE; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE TABLE items_worth (
+    id integer NOT NULL,
+    money_value numeric(10,2) NOT NULL,
+    currency character varying(15) NOT NULL,
+    item_id_id uuid NOT NULL
+);
+
+
+ALTER TABLE items_worth OWNER TO iss;
+
+--
+-- Name: ishipsafe_items_worth_id_seq; Type: SEQUENCE; Schema: public; Owner: iss
+--
+
+CREATE SEQUENCE ishipsafe_items_worth_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE ishipsafe_items_worth_id_seq OWNER TO iss;
+
+--
+-- Name: ishipsafe_items_worth_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: iss
+--
+
+ALTER SEQUENCE ishipsafe_items_worth_id_seq OWNED BY items_worth.id;
+
+
+--
+-- Name: package; Type: TABLE; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE TABLE package (
+    id integer NOT NULL,
+    total_price numeric(10,2) NOT NULL,
+    currency_id_id uuid NOT NULL,
+    package_id_id integer NOT NULL,
+    user_id_id uuid NOT NULL
+);
+
+
+ALTER TABLE package OWNER TO iss;
+
+--
+-- Name: ishipsafe_package_id_seq; Type: SEQUENCE; Schema: public; Owner: iss
+--
+
+CREATE SEQUENCE ishipsafe_package_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE ishipsafe_package_id_seq OWNER TO iss;
+
+--
+-- Name: ishipsafe_package_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: iss
+--
+
+ALTER SEQUENCE ishipsafe_package_id_seq OWNED BY package.id;
+
+
+--
+-- Name: item; Type: TABLE; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE TABLE item (
+    item_id uuid NOT NULL,
+    item_name character varying(128) NOT NULL,
+    item_type character varying(128) NOT NULL,
+    item_value numeric(10,2) NOT NULL,
+    item_weight integer NOT NULL,
+    physical_type character varying(15) NOT NULL,
+    is_specific boolean NOT NULL
+);
+
+
+ALTER TABLE item OWNER TO iss;
+
+--
+-- Name: notifications; Type: TABLE; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE TABLE notifications (
+    notification_id uuid NOT NULL,
+    notification_type character varying(15) NOT NULL,
+    notification_mode character varying(15) NOT NULL,
+    is_pending boolean NOT NULL,
+    bundle_id_id uuid NOT NULL,
+    notification_receiver_id_id uuid NOT NULL,
+    notification_sender_id_id uuid NOT NULL
+);
+
+
+ALTER TABLE notifications OWNER TO iss;
+
+--
+-- Name: pending_bundle_user_action; Type: TABLE; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE TABLE pending_bundle_user_action (
+    user_action_id uuid NOT NULL,
+    action_type character varying(15) NOT NULL,
+    status character varying(15) NOT NULL,
+    actual_action_date timestamp with time zone NOT NULL,
+    expected_action_date timestamp with time zone NOT NULL,
+    flyer_dropoff_preference_type character varying(15) NOT NULL,
+    bundle_id_id uuid NOT NULL,
+    city_id_id uuid NOT NULL,
+    destination_vendor_id_id uuid NOT NULL,
+    flyer_id_id uuid NOT NULL,
+    source_vendor_id_id uuid NOT NULL
+);
+
+
+ALTER TABLE pending_bundle_user_action OWNER TO iss;
+
+--
+-- Name: pending_package_user_action; Type: TABLE; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE TABLE pending_package_user_action (
+    user_action_id uuid NOT NULL,
+    action_type character varying(15) NOT NULL,
+    status character varying(15) NOT NULL,
+    actual_action_date timestamp with time zone NOT NULL,
+    expected_action_date timestamp with time zone NOT NULL,
+    flyer_dropoff_preference_type character varying(128) NOT NULL,
+    city_id_id uuid NOT NULL,
+    receiver_id_id uuid NOT NULL,
+    sender_id_id uuid NOT NULL,
+    source_vendor_id_id uuid NOT NULL
+);
+
+
+ALTER TABLE pending_package_user_action OWNER TO iss;
+
+--
+-- Name: pricing; Type: TABLE; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE TABLE pricing (
+    pricing_id uuid NOT NULL,
+    item_type character varying(15) NOT NULL,
+    weight integer NOT NULL,
+    min_value integer NOT NULL,
+    max_value integer NOT NULL,
+    price numeric(10,2) NOT NULL
+);
+
+
+ALTER TABLE pricing OWNER TO iss;
+
+--
+-- Name: sender_complete_transactions; Type: TABLE; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE TABLE sender_complete_transactions (
+    sender_complete_transaction_id uuid NOT NULL,
+    sender_gateway_id character varying(15) NOT NULL,
+    sender_complete_transaction_amount numeric(10,2) NOT NULL,
+    sender_transaction_type character varying(15) NOT NULL,
+    sender_payment_type character varying(15) NOT NULL,
+    start_date timestamp with time zone NOT NULL,
+    end_date timestamp with time zone NOT NULL,
+    bank_id_id uuid NOT NULL,
+    sender_currency_id_id uuid NOT NULL,
+    user_id_id uuid NOT NULL
+);
+
+
+ALTER TABLE sender_complete_transactions OWNER TO iss;
+
+--
+-- Name: sending_pending_transactions; Type: TABLE; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE TABLE sending_pending_transactions (
+    sender_transaction_id uuid NOT NULL,
+    sender_transaction_amount numeric(10,2) NOT NULL,
+    sender_transaction_type character varying(15) NOT NULL,
+    sender_rejected_reason character varying(128) NOT NULL,
+    sender_payment_type character varying(15) NOT NULL,
+    start_date timestamp with time zone NOT NULL,
+    current_start_date timestamp with time zone NOT NULL,
+    sender_transaction_status character varying(128) NOT NULL,
+    bank_id_id uuid NOT NULL,
+    sending_currency_id_id uuid NOT NULL,
+    user_id_id uuid NOT NULL
+);
+
+
+ALTER TABLE sending_pending_transactions OWNER TO iss;
+
+--
+-- Name: tracking_bundle; Type: TABLE; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE TABLE tracking_bundle (
+    tracking_bundle_id uuid NOT NULL,
+    bundle_id_id uuid NOT NULL,
+    tracking_package_id_id integer NOT NULL
+);
+
+
+ALTER TABLE tracking_bundle OWNER TO iss;
+
+--
+-- Name: tracking_package; Type: TABLE; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE TABLE tracking_package (
+    tracking_package_id uuid NOT NULL,
+    owner_id_id uuid NOT NULL,
+    package_id_id integer NOT NULL,
+    vendor_id_id uuid NOT NULL
+);
+
+
+ALTER TABLE tracking_package OWNER TO iss;
+
+--
+-- Name: user_item; Type: TABLE; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE TABLE user_item (
+    user_item_id uuid NOT NULL,
+    item_name character varying(128) NOT NULL,
+    item_type character varying(128) NOT NULL,
+    item_value numeric(10,2) NOT NULL,
+    item_weight integer NOT NULL,
+    is_specific boolean NOT NULL,
+    item_id_id uuid NOT NULL,
+    package_id_id integer NOT NULL,
+    user_id_id uuid NOT NULL
+);
+
+
+ALTER TABLE user_item OWNER TO iss;
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY activity_tracking ALTER COLUMN id SET DEFAULT nextval('ishipsafe_activity_tracking_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY auth_group ALTER COLUMN id SET DEFAULT nextval('auth_group_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY auth_group_permissions ALTER COLUMN id SET DEFAULT nextval('auth_group_permissions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY auth_permission ALTER COLUMN id SET DEFAULT nextval('auth_permission_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY auth_user ALTER COLUMN id SET DEFAULT nextval('auth_user_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY auth_user_groups ALTER COLUMN id SET DEFAULT nextval('auth_user_groups_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY auth_user_user_permissions ALTER COLUMN id SET DEFAULT nextval('auth_user_user_permissions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY authentication ALTER COLUMN id SET DEFAULT nextval('ishipsafe_authentication_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY bundle_package_mapping ALTER COLUMN id SET DEFAULT nextval('ishipsafe_bundle_package_mapping_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY company_action ALTER COLUMN id SET DEFAULT nextval('ishipsafe_company_action_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY item_airline_country ALTER COLUMN id SET DEFAULT nextval('ishipsafe_item_airline_country_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY items_worth ALTER COLUMN id SET DEFAULT nextval('ishipsafe_items_worth_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY package ALTER COLUMN id SET DEFAULT nextval('ishipsafe_package_id_seq'::regclass);
+
+
+--
+-- Data for Name: activity_tracking; Type: TABLE DATA; Schema: public; Owner: iss
+--
+
+COPY activity_tracking (id, contact_type, "timestamp", user_id_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: address; Type: TABLE DATA; Schema: public; Owner: iss
+--
+
+COPY address (address_id, address_line_1, address_line_2, city, state, zip_code, is_billing, created, modified, user_id_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: airlines; Type: TABLE DATA; Schema: public; Owner: iss
+--
+
+COPY airlines (airline_id, airline_name, prof_airline_code, airline_type, head_office_city, head_office_country) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: iss
+--
+
+COPY auth_group (id, name) FROM stdin;
+\.
+
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: iss
+--
+
+SELECT pg_catalog.setval('auth_group_id_seq', 1, false);
+
+
+--
+-- Data for Name: auth_group_permissions; Type: TABLE DATA; Schema: public; Owner: iss
+--
+
+COPY auth_group_permissions (id, group_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: iss
+--
+
+SELECT pg_catalog.setval('auth_group_permissions_id_seq', 1, false);
+
+
+--
+-- Data for Name: auth_permission; Type: TABLE DATA; Schema: public; Owner: iss
+--
+
+COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
+1	Can add log entry	1	add_logentry
+2	Can change log entry	1	change_logentry
+3	Can delete log entry	1	delete_logentry
+4	Can add permission	2	add_permission
+5	Can change permission	2	change_permission
+6	Can delete permission	2	delete_permission
+7	Can add group	3	add_group
+8	Can change group	3	change_group
+9	Can delete group	3	delete_group
+10	Can add user	4	add_user
+11	Can change user	4	change_user
+12	Can delete user	4	delete_user
+13	Can add content type	5	add_contenttype
+14	Can change content type	5	change_contenttype
+15	Can delete content type	5	delete_contenttype
+16	Can add session	6	add_session
+17	Can change session	6	change_session
+18	Can delete session	6	delete_session
+19	Can add pricing	7	add_pricing
+20	Can change pricing	7	change_pricing
+21	Can delete pricing	7	delete_pricing
+22	Can add user	8	add_user
+23	Can change user	8	change_user
+24	Can delete user	8	delete_user
+25	Can add contact_number	9	add_contact_number
+26	Can change contact_number	9	change_contact_number
+27	Can delete contact_number	9	delete_contact_number
+28	Can add address	10	add_address
+29	Can change address	10	change_address
+30	Can delete address	10	delete_address
+31	Can add airlines	11	add_airlines
+32	Can change airlines	11	change_airlines
+33	Can delete airlines	11	delete_airlines
+34	Can add country	12	add_country
+35	Can change country	12	change_country
+36	Can delete country	12	delete_country
+37	Can add user_item	13	add_user_item
+38	Can change user_item	13	change_user_item
+39	Can delete user_item	13	delete_user_item
+40	Can add package	14	add_package
+41	Can change package	14	change_package
+42	Can delete package	14	delete_package
+43	Can add currency	15	add_currency
+44	Can change currency	15	change_currency
+45	Can delete currency	15	delete_currency
+46	Can add item	16	add_item
+47	Can change item	16	change_item
+48	Can delete item	16	delete_item
+49	Can add items_worth	17	add_items_worth
+50	Can change items_worth	17	change_items_worth
+51	Can delete items_worth	17	delete_items_worth
+52	Can add item_airline_country	18	add_item_airline_country
+53	Can change item_airline_country	18	change_item_airline_country
+54	Can delete item_airline_country	18	delete_item_airline_country
+55	Can add pending_package_user_action	19	add_pending_package_user_action
+56	Can change pending_package_user_action	19	change_pending_package_user_action
+57	Can delete pending_package_user_action	19	delete_pending_package_user_action
+58	Can add city	20	add_city
+59	Can change city	20	change_city
+60	Can delete city	20	delete_city
+61	Can add bank	21	add_bank
+62	Can change bank	21	change_bank
+63	Can delete bank	21	delete_bank
+64	Can add pending_bundle_user_action	22	add_pending_bundle_user_action
+65	Can change pending_bundle_user_action	22	change_pending_bundle_user_action
+66	Can delete pending_bundle_user_action	22	delete_pending_bundle_user_action
+67	Can add company_action	23	add_company_action
+68	Can change company_action	23	change_company_action
+69	Can delete company_action	23	delete_company_action
+70	Can add sending_pending_transactions	24	add_sending_pending_transactions
+71	Can change sending_pending_transactions	24	change_sending_pending_transactions
+72	Can delete sending_pending_transactions	24	delete_sending_pending_transactions
+73	Can add sender_complete_transactions	25	add_sender_complete_transactions
+74	Can change sender_complete_transactions	25	change_sender_complete_transactions
+75	Can delete sender_complete_transactions	25	delete_sender_complete_transactions
+76	Can add notifications	26	add_notifications
+77	Can change notifications	26	change_notifications
+78	Can delete notifications	26	delete_notifications
+79	Can add bundle	27	add_bundle
+80	Can change bundle	27	change_bundle
+81	Can delete bundle	27	delete_bundle
+82	Can add bundle_package_mapping	28	add_bundle_package_mapping
+83	Can change bundle_package_mapping	28	change_bundle_package_mapping
+84	Can delete bundle_package_mapping	28	delete_bundle_package_mapping
+85	Can add tracking_package	29	add_tracking_package
+86	Can change tracking_package	29	change_tracking_package
+87	Can delete tracking_package	29	delete_tracking_package
+88	Can add tracking_bundle	30	add_tracking_bundle
+89	Can change tracking_bundle	30	change_tracking_bundle
+90	Can delete tracking_bundle	30	delete_tracking_bundle
+91	Can add disputed_bundle	31	add_disputed_bundle
+92	Can change disputed_bundle	31	change_disputed_bundle
+93	Can delete disputed_bundle	31	delete_disputed_bundle
+94	Can add activity_ tracking	32	add_activity_tracking
+95	Can change activity_ tracking	32	change_activity_tracking
+96	Can delete activity_ tracking	32	delete_activity_tracking
+97	Can add authentication	33	add_authentication
+98	Can change authentication	33	change_authentication
+99	Can delete authentication	33	delete_authentication
+\.
+
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: iss
+--
+
+SELECT pg_catalog.setval('auth_permission_id_seq', 99, true);
+
+
+--
+-- Data for Name: auth_user; Type: TABLE DATA; Schema: public; Owner: iss
+--
+
+COPY auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_user_groups; Type: TABLE DATA; Schema: public; Owner: iss
+--
+
+COPY auth_user_groups (id, user_id, group_id) FROM stdin;
+\.
+
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: iss
+--
+
+SELECT pg_catalog.setval('auth_user_groups_id_seq', 1, false);
+
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: iss
+--
+
+SELECT pg_catalog.setval('auth_user_id_seq', 1, false);
+
+
+--
+-- Data for Name: auth_user_user_permissions; Type: TABLE DATA; Schema: public; Owner: iss
+--
+
+COPY auth_user_user_permissions (id, user_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: iss
+--
+
+SELECT pg_catalog.setval('auth_user_user_permissions_id_seq', 1, false);
+
+
+--
+-- Data for Name: authentication; Type: TABLE DATA; Schema: public; Owner: iss
+--
+
+COPY authentication (id, email, user_id_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: bank; Type: TABLE DATA; Schema: public; Owner: iss
+--
+
+COPY bank (bank_id, bank_name, bank_city, bank_country) FROM stdin;
+\.
+
+
+--
+-- Data for Name: bundle; Type: TABLE DATA; Schema: public; Owner: iss
+--
+
+COPY bundle (bundle_id, bunble_price) FROM stdin;
+\.
+
+
+--
+-- Data for Name: bundle_package_mapping; Type: TABLE DATA; Schema: public; Owner: iss
+--
+
+COPY bundle_package_mapping (id, bundle_id_id, package_id_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: city; Type: TABLE DATA; Schema: public; Owner: iss
+--
+
+COPY city (city_id, city_name) FROM stdin;
+\.
+
+
+--
+-- Data for Name: company_action; Type: TABLE DATA; Schema: public; Owner: iss
+--
+
+COPY company_action (id, company_action_status, user_action_id_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: contact_number; Type: TABLE DATA; Schema: public; Owner: iss
+--
+
+COPY contact_number (mobile_id, mobile_number, mobile_type, created, modified, user_id_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: country; Type: TABLE DATA; Schema: public; Owner: iss
+--
+
+COPY country (country_id, country_name, country_code) FROM stdin;
+\.
+
+
+--
+-- Data for Name: currency; Type: TABLE DATA; Schema: public; Owner: iss
+--
+
+COPY currency (currency_id) FROM stdin;
+\.
+
+
+--
+-- Name: ishipsafe_activity_tracking_id_seq; Type: SEQUENCE SET; Schema: public; Owner: iss
+--
+
+SELECT pg_catalog.setval('ishipsafe_activity_tracking_id_seq', 1, false);
+
+
+--
+-- Name: ishipsafe_authentication_id_seq; Type: SEQUENCE SET; Schema: public; Owner: iss
+--
+
+SELECT pg_catalog.setval('ishipsafe_authentication_id_seq', 1, false);
+
+
+--
+-- Name: ishipsafe_bundle_package_mapping_id_seq; Type: SEQUENCE SET; Schema: public; Owner: iss
+--
+
+SELECT pg_catalog.setval('ishipsafe_bundle_package_mapping_id_seq', 1, false);
+
+
+--
+-- Name: ishipsafe_company_action_id_seq; Type: SEQUENCE SET; Schema: public; Owner: iss
+--
+
+SELECT pg_catalog.setval('ishipsafe_company_action_id_seq', 1, false);
+
+
+--
+-- Name: ishipsafe_item_airline_country_id_seq; Type: SEQUENCE SET; Schema: public; Owner: iss
+--
+
+SELECT pg_catalog.setval('ishipsafe_item_airline_country_id_seq', 1, false);
+
+
+--
+-- Name: ishipsafe_items_worth_id_seq; Type: SEQUENCE SET; Schema: public; Owner: iss
+--
+
+SELECT pg_catalog.setval('ishipsafe_items_worth_id_seq', 1, false);
+
+
+--
+-- Name: ishipsafe_package_id_seq; Type: SEQUENCE SET; Schema: public; Owner: iss
+--
+
+SELECT pg_catalog.setval('ishipsafe_package_id_seq', 1, false);
+
+
+--
+-- Data for Name: item; Type: TABLE DATA; Schema: public; Owner: iss
+--
+
+COPY item (item_id, item_name, item_type, item_value, item_weight, physical_type, is_specific) FROM stdin;
+\.
+
+
+--
+-- Data for Name: item_airline_country; Type: TABLE DATA; Schema: public; Owner: iss
+--
+
+COPY item_airline_country (id, airline_id_id, country_id_id, item_id_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: items_worth; Type: TABLE DATA; Schema: public; Owner: iss
+--
+
+COPY items_worth (id, money_value, currency, item_id_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: notifications; Type: TABLE DATA; Schema: public; Owner: iss
+--
+
+COPY notifications (notification_id, notification_type, notification_mode, is_pending, bundle_id_id, notification_receiver_id_id, notification_sender_id_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: package; Type: TABLE DATA; Schema: public; Owner: iss
+--
+
+COPY package (id, total_price, currency_id_id, package_id_id, user_id_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: pending_bundle_user_action; Type: TABLE DATA; Schema: public; Owner: iss
+--
+
+COPY pending_bundle_user_action (user_action_id, action_type, status, actual_action_date, expected_action_date, flyer_dropoff_preference_type, bundle_id_id, city_id_id, destination_vendor_id_id, flyer_id_id, source_vendor_id_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: pending_package_user_action; Type: TABLE DATA; Schema: public; Owner: iss
+--
+
+COPY pending_package_user_action (user_action_id, action_type, status, actual_action_date, expected_action_date, flyer_dropoff_preference_type, city_id_id, receiver_id_id, sender_id_id, source_vendor_id_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: pricing; Type: TABLE DATA; Schema: public; Owner: iss
+--
+
+COPY pricing (pricing_id, item_type, weight, min_value, max_value, price) FROM stdin;
+\.
+
+
+--
+-- Data for Name: sender_complete_transactions; Type: TABLE DATA; Schema: public; Owner: iss
+--
+
+COPY sender_complete_transactions (sender_complete_transaction_id, sender_gateway_id, sender_complete_transaction_amount, sender_transaction_type, sender_payment_type, start_date, end_date, bank_id_id, sender_currency_id_id, user_id_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: sending_pending_transactions; Type: TABLE DATA; Schema: public; Owner: iss
+--
+
+COPY sending_pending_transactions (sender_transaction_id, sender_transaction_amount, sender_transaction_type, sender_rejected_reason, sender_payment_type, start_date, current_start_date, sender_transaction_status, bank_id_id, sending_currency_id_id, user_id_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: tracking_bundle; Type: TABLE DATA; Schema: public; Owner: iss
+--
+
+COPY tracking_bundle (tracking_bundle_id, bundle_id_id, tracking_package_id_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: tracking_package; Type: TABLE DATA; Schema: public; Owner: iss
+--
+
+COPY tracking_package (tracking_package_id, owner_id_id, package_id_id, vendor_id_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: user_item; Type: TABLE DATA; Schema: public; Owner: iss
+--
+
+COPY user_item (user_item_id, item_name, item_type, item_value, item_weight, is_specific, item_id_id, package_id_id, user_id_id) FROM stdin;
+\.
+
+
+--
+-- Name: auth_group_name_key; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_group
+    ADD CONSTRAINT auth_group_name_key UNIQUE (name);
+
+
+--
+-- Name: auth_group_permissions_group_id_permission_id_key; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_permission_id_key UNIQUE (group_id, permission_id);
+
+
+--
+-- Name: auth_group_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_group_pkey; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_group
+    ADD CONSTRAINT auth_group_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_permission_content_type_id_codename_key; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_codename_key UNIQUE (content_type_id, codename);
+
+
+--
+-- Name: auth_permission_pkey; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_permission
+    ADD CONSTRAINT auth_permission_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_user_groups
+    ADD CONSTRAINT auth_user_groups_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_groups_user_id_group_id_key; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_user_groups
+    ADD CONSTRAINT auth_user_groups_user_id_group_id_key UNIQUE (user_id, group_id);
+
+
+--
+-- Name: auth_user_pkey; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_user
+    ADD CONSTRAINT auth_user_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_user_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_user_permissions_user_id_permission_id_key; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_user_id_permission_id_key UNIQUE (user_id, permission_id);
+
+
+--
+-- Name: auth_user_username_key; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY auth_user
+    ADD CONSTRAINT auth_user_username_key UNIQUE (username);
+
+
+--
+-- Name: ishipsafe_activity_tracking_pkey; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY activity_tracking
+    ADD CONSTRAINT ishipsafe_activity_tracking_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ishipsafe_address_pkey; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY address
+    ADD CONSTRAINT ishipsafe_address_pkey PRIMARY KEY (address_id);
+
+
+--
+-- Name: ishipsafe_airlines_pkey; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY airlines
+    ADD CONSTRAINT ishipsafe_airlines_pkey PRIMARY KEY (airline_id);
+
+
+--
+-- Name: ishipsafe_authentication_pkey; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY authentication
+    ADD CONSTRAINT ishipsafe_authentication_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ishipsafe_bank_pkey; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY bank
+    ADD CONSTRAINT ishipsafe_bank_pkey PRIMARY KEY (bank_id);
+
+
+--
+-- Name: ishipsafe_bundle_package_mapping_pkey; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY bundle_package_mapping
+    ADD CONSTRAINT ishipsafe_bundle_package_mapping_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ishipsafe_bundle_pkey; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY bundle
+    ADD CONSTRAINT ishipsafe_bundle_pkey PRIMARY KEY (bundle_id);
+
+
+--
+-- Name: ishipsafe_city_pkey; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY city
+    ADD CONSTRAINT ishipsafe_city_pkey PRIMARY KEY (city_id);
+
+
+--
+-- Name: ishipsafe_company_action_pkey; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY company_action
+    ADD CONSTRAINT ishipsafe_company_action_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ishipsafe_contact_number_pkey; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY contact_number
+    ADD CONSTRAINT ishipsafe_contact_number_pkey PRIMARY KEY (mobile_id);
+
+
+--
+-- Name: ishipsafe_country_pkey; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY country
+    ADD CONSTRAINT ishipsafe_country_pkey PRIMARY KEY (country_id);
+
+
+--
+-- Name: ishipsafe_currency_pkey; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY currency
+    ADD CONSTRAINT ishipsafe_currency_pkey PRIMARY KEY (currency_id);
+
+
+--
+-- Name: ishipsafe_item_airline_country_pkey; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY item_airline_country
+    ADD CONSTRAINT ishipsafe_item_airline_country_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ishipsafe_item_pkey; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY item
+    ADD CONSTRAINT ishipsafe_item_pkey PRIMARY KEY (item_id);
+
+
+--
+-- Name: ishipsafe_items_worth_pkey; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY items_worth
+    ADD CONSTRAINT ishipsafe_items_worth_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ishipsafe_notifications_pkey; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY notifications
+    ADD CONSTRAINT ishipsafe_notifications_pkey PRIMARY KEY (notification_id);
+
+
+--
+-- Name: ishipsafe_package_pkey; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY package
+    ADD CONSTRAINT ishipsafe_package_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ishipsafe_pending_bundle_user_action_pkey; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY pending_bundle_user_action
+    ADD CONSTRAINT ishipsafe_pending_bundle_user_action_pkey PRIMARY KEY (user_action_id);
+
+
+--
+-- Name: ishipsafe_pending_package_user_action_pkey; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY pending_package_user_action
+    ADD CONSTRAINT ishipsafe_pending_package_user_action_pkey PRIMARY KEY (user_action_id);
+
+
+--
+-- Name: ishipsafe_pricing_pkey; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY pricing
+    ADD CONSTRAINT ishipsafe_pricing_pkey PRIMARY KEY (pricing_id);
+
+
+--
+-- Name: ishipsafe_sender_complete_transactions_pkey; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY sender_complete_transactions
+    ADD CONSTRAINT ishipsafe_sender_complete_transactions_pkey PRIMARY KEY (sender_complete_transaction_id);
+
+
+--
+-- Name: ishipsafe_sending_pending_transactions_pkey; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY sending_pending_transactions
+    ADD CONSTRAINT ishipsafe_sending_pending_transactions_pkey PRIMARY KEY (sender_transaction_id);
+
+
+--
+-- Name: ishipsafe_tracking_bundle_pkey; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY tracking_bundle
+    ADD CONSTRAINT ishipsafe_tracking_bundle_pkey PRIMARY KEY (tracking_bundle_id);
+
+
+--
+-- Name: ishipsafe_tracking_package_pkey; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY tracking_package
+    ADD CONSTRAINT ishipsafe_tracking_package_pkey PRIMARY KEY (tracking_package_id);
+
+
+--
+-- Name: ishipsafe_user_item_pkey; Type: CONSTRAINT; Schema: public; Owner: iss; Tablespace: 
+--
+
+ALTER TABLE ONLY user_item
+    ADD CONSTRAINT ishipsafe_user_item_pkey PRIMARY KEY (user_item_id);
+
+
+--
+-- Name: auth_group_name_253ae2a6331666e8_like; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX auth_group_name_253ae2a6331666e8_like ON auth_group USING btree (name varchar_pattern_ops);
+
+
+--
+-- Name: auth_group_permissions_0e939a4f; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX auth_group_permissions_0e939a4f ON auth_group_permissions USING btree (group_id);
+
+
+--
+-- Name: auth_group_permissions_8373b171; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX auth_group_permissions_8373b171 ON auth_group_permissions USING btree (permission_id);
+
+
+--
+-- Name: auth_permission_417f1b1c; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX auth_permission_417f1b1c ON auth_permission USING btree (content_type_id);
+
+
+--
+-- Name: auth_user_groups_0e939a4f; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX auth_user_groups_0e939a4f ON auth_user_groups USING btree (group_id);
+
+
+--
+-- Name: auth_user_groups_e8701ad4; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX auth_user_groups_e8701ad4 ON auth_user_groups USING btree (user_id);
+
+
+--
+-- Name: auth_user_user_permissions_8373b171; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX auth_user_user_permissions_8373b171 ON auth_user_user_permissions USING btree (permission_id);
+
+
+--
+-- Name: auth_user_user_permissions_e8701ad4; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX auth_user_user_permissions_e8701ad4 ON auth_user_user_permissions USING btree (user_id);
+
+
+--
+-- Name: auth_user_username_51b3b110094b8aae_like; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX auth_user_username_51b3b110094b8aae_like ON auth_user USING btree (username varchar_pattern_ops);
+
+
+--
+-- Name: ishipsafe_activity_tracking_18624dd3; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_activity_tracking_18624dd3 ON activity_tracking USING btree (user_id_id);
+
+
+--
+-- Name: ishipsafe_address_18624dd3; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_address_18624dd3 ON address USING btree (user_id_id);
+
+
+--
+-- Name: ishipsafe_authentication_18624dd3; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_authentication_18624dd3 ON authentication USING btree (user_id_id);
+
+
+--
+-- Name: ishipsafe_bundle_package_mapping_1b7f18e6; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_bundle_package_mapping_1b7f18e6 ON bundle_package_mapping USING btree (bundle_id_id);
+
+
+--
+-- Name: ishipsafe_bundle_package_mapping_69034b03; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_bundle_package_mapping_69034b03 ON bundle_package_mapping USING btree (package_id_id);
+
+
+--
+-- Name: ishipsafe_company_action_2206b91e; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_company_action_2206b91e ON company_action USING btree (user_action_id_id);
+
+
+--
+-- Name: ishipsafe_contact_number_18624dd3; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_contact_number_18624dd3 ON contact_number USING btree (user_id_id);
+
+
+--
+-- Name: ishipsafe_item_airline_country_3834d646; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_item_airline_country_3834d646 ON item_airline_country USING btree (item_id_id);
+
+
+--
+-- Name: ishipsafe_item_airline_country_563cf480; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_item_airline_country_563cf480 ON item_airline_country USING btree (country_id_id);
+
+
+--
+-- Name: ishipsafe_item_airline_country_b8773906; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_item_airline_country_b8773906 ON item_airline_country USING btree (airline_id_id);
+
+
+--
+-- Name: ishipsafe_items_worth_3834d646; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_items_worth_3834d646 ON items_worth USING btree (item_id_id);
+
+
+--
+-- Name: ishipsafe_notifications_1b7f18e6; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_notifications_1b7f18e6 ON notifications USING btree (bundle_id_id);
+
+
+--
+-- Name: ishipsafe_notifications_aecb0230; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_notifications_aecb0230 ON notifications USING btree (notification_receiver_id_id);
+
+
+--
+-- Name: ishipsafe_notifications_c039c765; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_notifications_c039c765 ON notifications USING btree (notification_sender_id_id);
+
+
+--
+-- Name: ishipsafe_package_18624dd3; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_package_18624dd3 ON package USING btree (user_id_id);
+
+
+--
+-- Name: ishipsafe_package_3e424d8c; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_package_3e424d8c ON package USING btree (currency_id_id);
+
+
+--
+-- Name: ishipsafe_package_69034b03; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_package_69034b03 ON package USING btree (package_id_id);
+
+
+--
+-- Name: ishipsafe_pending_bundle_user_action_1b7f18e6; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_pending_bundle_user_action_1b7f18e6 ON pending_bundle_user_action USING btree (bundle_id_id);
+
+
+--
+-- Name: ishipsafe_pending_bundle_user_action_327d3fb4; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_pending_bundle_user_action_327d3fb4 ON pending_bundle_user_action USING btree (destination_vendor_id_id);
+
+
+--
+-- Name: ishipsafe_pending_bundle_user_action_7093aefe; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_pending_bundle_user_action_7093aefe ON pending_bundle_user_action USING btree (flyer_id_id);
+
+
+--
+-- Name: ishipsafe_pending_bundle_user_action_92951dc7; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_pending_bundle_user_action_92951dc7 ON pending_bundle_user_action USING btree (source_vendor_id_id);
+
+
+--
+-- Name: ishipsafe_pending_bundle_user_action_f4721383; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_pending_bundle_user_action_f4721383 ON pending_bundle_user_action USING btree (city_id_id);
+
+
+--
+-- Name: ishipsafe_pending_package_user_action_703773ec; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_pending_package_user_action_703773ec ON pending_package_user_action USING btree (sender_id_id);
+
+
+--
+-- Name: ishipsafe_pending_package_user_action_92951dc7; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_pending_package_user_action_92951dc7 ON pending_package_user_action USING btree (source_vendor_id_id);
+
+
+--
+-- Name: ishipsafe_pending_package_user_action_f23469d5; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_pending_package_user_action_f23469d5 ON pending_package_user_action USING btree (receiver_id_id);
+
+
+--
+-- Name: ishipsafe_pending_package_user_action_f4721383; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_pending_package_user_action_f4721383 ON pending_package_user_action USING btree (city_id_id);
+
+
+--
+-- Name: ishipsafe_sender_complete_transactions_18624dd3; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_sender_complete_transactions_18624dd3 ON sender_complete_transactions USING btree (user_id_id);
+
+
+--
+-- Name: ishipsafe_sender_complete_transactions_30bb766c; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_sender_complete_transactions_30bb766c ON sender_complete_transactions USING btree (sender_currency_id_id);
+
+
+--
+-- Name: ishipsafe_sender_complete_transactions_e589f494; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_sender_complete_transactions_e589f494 ON sender_complete_transactions USING btree (bank_id_id);
+
+
+--
+-- Name: ishipsafe_sending_pending_transactions_18624dd3; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_sending_pending_transactions_18624dd3 ON sending_pending_transactions USING btree (user_id_id);
+
+
+--
+-- Name: ishipsafe_sending_pending_transactions_5505eb61; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_sending_pending_transactions_5505eb61 ON sending_pending_transactions USING btree (sending_currency_id_id);
+
+
+--
+-- Name: ishipsafe_sending_pending_transactions_e589f494; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_sending_pending_transactions_e589f494 ON sending_pending_transactions USING btree (bank_id_id);
+
+
+--
+-- Name: ishipsafe_tracking_bundle_1b7f18e6; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_tracking_bundle_1b7f18e6 ON tracking_bundle USING btree (bundle_id_id);
+
+
+--
+-- Name: ishipsafe_tracking_bundle_c0f357a1; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_tracking_bundle_c0f357a1 ON tracking_bundle USING btree (tracking_package_id_id);
+
+
+--
+-- Name: ishipsafe_tracking_package_279564bf; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_tracking_package_279564bf ON tracking_package USING btree (owner_id_id);
+
+
+--
+-- Name: ishipsafe_tracking_package_5b740474; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_tracking_package_5b740474 ON tracking_package USING btree (vendor_id_id);
+
+
+--
+-- Name: ishipsafe_tracking_package_69034b03; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_tracking_package_69034b03 ON tracking_package USING btree (package_id_id);
+
+
+--
+-- Name: ishipsafe_user_item_18624dd3; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_user_item_18624dd3 ON user_item USING btree (user_id_id);
+
+
+--
+-- Name: ishipsafe_user_item_3834d646; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_user_item_3834d646 ON user_item USING btree (item_id_id);
+
+
+--
+-- Name: ishipsafe_user_item_69034b03; Type: INDEX; Schema: public; Owner: iss; Tablespace: 
+--
+
+CREATE INDEX ishipsafe_user_item_69034b03 ON user_item USING btree (package_id_id);
+
+
+--
+-- Name: D0439035ce1b70252c9c4bfa7e93afe6; Type: FK CONSTRAINT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY sending_pending_transactions
+    ADD CONSTRAINT "D0439035ce1b70252c9c4bfa7e93afe6" FOREIGN KEY (sending_currency_id_id) REFERENCES currency(currency_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: D59c14069adbbdfff6b9f2d1f3fcf909; Type: FK CONSTRAINT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY package
+    ADD CONSTRAINT "D59c14069adbbdfff6b9f2d1f3fcf909" FOREIGN KEY (currency_id_id) REFERENCES currency(currency_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_group_permissio_group_id_689710a9a73b7457_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY auth_group_permissions
+    ADD CONSTRAINT auth_group_permissio_group_id_689710a9a73b7457_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_group_permission_id_1f49ccbbdc69d2fc_fk_auth_permission_id; Type: FK CONSTRAINT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY auth_group_permissions
+    ADD CONSTRAINT auth_group_permission_id_1f49ccbbdc69d2fc_fk_auth_permission_id FOREIGN KEY (permission_id) REFERENCES auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user__permission_id_384b62483d7071f0_fk_auth_permission_id; Type: FK CONSTRAINT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY auth_user_user_permissions
+    ADD CONSTRAINT auth_user__permission_id_384b62483d7071f0_fk_auth_permission_id FOREIGN KEY (permission_id) REFERENCES auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_groups_group_id_33ac548dcf5f8e37_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY auth_user_groups
+    ADD CONSTRAINT auth_user_groups_group_id_33ac548dcf5f8e37_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_groups_user_id_4b5ed4ffdb8fd9b0_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY auth_user_groups
+    ADD CONSTRAINT auth_user_groups_user_id_4b5ed4ffdb8fd9b0_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_user_permiss_user_id_7f0938558328534a_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permiss_user_id_7f0938558328534a_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: country_id_id_2407a3d52f408bea_fk_ishipsafe_country_country_id; Type: FK CONSTRAINT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY item_airline_country
+    ADD CONSTRAINT country_id_id_2407a3d52f408bea_fk_ishipsafe_country_country_id FOREIGN KEY (country_id_id) REFERENCES country(country_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: d47c7d2e52b2365143913a7a2df917ed; Type: FK CONSTRAINT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY tracking_bundle
+    ADD CONSTRAINT d47c7d2e52b2365143913a7a2df917ed FOREIGN KEY (tracking_package_id_id) REFERENCES package(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: d9b6c39a96cc1a6b5120b3931bfd4164; Type: FK CONSTRAINT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY item_airline_country
+    ADD CONSTRAINT d9b6c39a96cc1a6b5120b3931bfd4164 FOREIGN KEY (airline_id_id) REFERENCES airlines(airline_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: f6bf70f7ec9dd11222c497832451822b; Type: FK CONSTRAINT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY company_action
+    ADD CONSTRAINT f6bf70f7ec9dd11222c497832451822b FOREIGN KEY (user_action_id_id) REFERENCES pending_package_user_action(user_action_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: f945fd7d14c95ebc878201674c7f04ed; Type: FK CONSTRAINT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY sender_complete_transactions
+    ADD CONSTRAINT f945fd7d14c95ebc878201674c7f04ed FOREIGN KEY (sender_currency_id_id) REFERENCES currency(currency_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: ish_bundle_id_id_2fbcadff9558b447_fk_ishipsafe_bundle_bundle_id; Type: FK CONSTRAINT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY notifications
+    ADD CONSTRAINT ish_bundle_id_id_2fbcadff9558b447_fk_ishipsafe_bundle_bundle_id FOREIGN KEY (bundle_id_id) REFERENCES bundle(bundle_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: ish_bundle_id_id_5b03971c4fa4dc81_fk_ishipsafe_bundle_bundle_id; Type: FK CONSTRAINT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY tracking_bundle
+    ADD CONSTRAINT ish_bundle_id_id_5b03971c4fa4dc81_fk_ishipsafe_bundle_bundle_id FOREIGN KEY (bundle_id_id) REFERENCES bundle(bundle_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: ish_bundle_id_id_5f26f01228c22ee3_fk_ishipsafe_bundle_bundle_id; Type: FK CONSTRAINT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY pending_bundle_user_action
+    ADD CONSTRAINT ish_bundle_id_id_5f26f01228c22ee3_fk_ishipsafe_bundle_bundle_id FOREIGN KEY (bundle_id_id) REFERENCES bundle(bundle_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: ish_bundle_id_id_7ab55162dc0510c2_fk_ishipsafe_bundle_bundle_id; Type: FK CONSTRAINT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY bundle_package_mapping
+    ADD CONSTRAINT ish_bundle_id_id_7ab55162dc0510c2_fk_ishipsafe_bundle_bundle_id FOREIGN KEY (bundle_id_id) REFERENCES bundle(bundle_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: ishipsaf_package_id_id_149dbd6843cc8927_fk_ishipsafe_package_id; Type: FK CONSTRAINT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY bundle_package_mapping
+    ADD CONSTRAINT ishipsaf_package_id_id_149dbd6843cc8927_fk_ishipsafe_package_id FOREIGN KEY (package_id_id) REFERENCES package(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: ishipsaf_package_id_id_30243a1d927a86b0_fk_ishipsafe_package_id; Type: FK CONSTRAINT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY package
+    ADD CONSTRAINT ishipsaf_package_id_id_30243a1d927a86b0_fk_ishipsafe_package_id FOREIGN KEY (package_id_id) REFERENCES package(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: ishipsaf_package_id_id_46fdcd22fb41ce5d_fk_ishipsafe_package_id; Type: FK CONSTRAINT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY user_item
+    ADD CONSTRAINT ishipsaf_package_id_id_46fdcd22fb41ce5d_fk_ishipsafe_package_id FOREIGN KEY (package_id_id) REFERENCES package(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: ishipsaf_package_id_id_5de98a4d04a429c1_fk_ishipsafe_package_id; Type: FK CONSTRAINT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY tracking_package
+    ADD CONSTRAINT ishipsaf_package_id_id_5de98a4d04a429c1_fk_ishipsafe_package_id FOREIGN KEY (package_id_id) REFERENCES package(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: ishipsafe_bank_id_id_21b0de6c5ab7f89f_fk_ishipsafe_bank_bank_id; Type: FK CONSTRAINT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY sender_complete_transactions
+    ADD CONSTRAINT ishipsafe_bank_id_id_21b0de6c5ab7f89f_fk_ishipsafe_bank_bank_id FOREIGN KEY (bank_id_id) REFERENCES bank(bank_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: ishipsafe_bank_id_id_3cc903485c4962d8_fk_ishipsafe_bank_bank_id; Type: FK CONSTRAINT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY sending_pending_transactions
+    ADD CONSTRAINT ishipsafe_bank_id_id_3cc903485c4962d8_fk_ishipsafe_bank_bank_id FOREIGN KEY (bank_id_id) REFERENCES bank(bank_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: ishipsafe_city_id_id_752a8ebd32a4f333_fk_ishipsafe_city_city_id; Type: FK CONSTRAINT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY pending_package_user_action
+    ADD CONSTRAINT ishipsafe_city_id_id_752a8ebd32a4f333_fk_ishipsafe_city_city_id FOREIGN KEY (city_id_id) REFERENCES city(city_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: ishipsafe_city_id_id_752f4434115add3e_fk_ishipsafe_city_city_id; Type: FK CONSTRAINT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY pending_bundle_user_action
+    ADD CONSTRAINT ishipsafe_city_id_id_752f4434115add3e_fk_ishipsafe_city_city_id FOREIGN KEY (city_id_id) REFERENCES city(city_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: ishipsafe_item_id_id_181a1c923498e9cb_fk_ishipsafe_item_item_id; Type: FK CONSTRAINT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY items_worth
+    ADD CONSTRAINT ishipsafe_item_id_id_181a1c923498e9cb_fk_ishipsafe_item_item_id FOREIGN KEY (item_id_id) REFERENCES item(item_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: ishipsafe_item_id_id_6c1a352d002c4b16_fk_ishipsafe_item_item_id; Type: FK CONSTRAINT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY item_airline_country
+    ADD CONSTRAINT ishipsafe_item_id_id_6c1a352d002c4b16_fk_ishipsafe_item_item_id FOREIGN KEY (item_id_id) REFERENCES item(item_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: ishipsafe_item_id_id_7fb6883e9fe4afa9_fk_ishipsafe_item_item_id; Type: FK CONSTRAINT; Schema: public; Owner: iss
+--
+
+ALTER TABLE ONLY user_item
+    ADD CONSTRAINT ishipsafe_item_id_id_7fb6883e9fe4afa9_fk_ishipsafe_item_item_id FOREIGN KEY (item_id_id) REFERENCES item(item_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: vamseek
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM vamseek;
+GRANT ALL ON SCHEMA public TO vamseek;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
