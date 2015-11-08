@@ -10,22 +10,5 @@
     "name": "pg",
     "connector": "postgresql",
     "user": "abhibel"
-  },
-  "emailDS": {
-    "name": "mail",
-    "defaultForType": "mail",
-    "connector": "mail",
-    "transports": [
-      {
-        "type": "SMTP",
-        "host": "smtp.gmail.com",
-        "secure": true,
-        "port": 465,
-        "auth": {
-          "user": "ishipsafe@gmail.com",
-          "pass": "goship#123"
-        }
-      }
-    ]
   }
 }

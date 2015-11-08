@@ -146,7 +146,7 @@
     "dataSource": "pg",
     "public": true
   },
-  "Email": {
+  "Subscribe": {
     "dataSource": "pg",
     "public": true
   }
