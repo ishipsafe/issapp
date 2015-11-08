@@ -3,13 +3,12 @@
     "name": "db",
     "connector": "memory"
   },
-  "accountDs": {
-    "name": "accountDs",
-    "connector": "postgresql",
-    "host": "demo.strongloop.com",
+  "pg": {
+    "host": "localhost",
     "port": 5432,
-    "database": "demo",
-    "username": "demo",
-    "password": "L00pBack"
+    "database": "ishipsafe",
+    "name": "pg",
+    "connector": "postgresql",
+    "user": "abhibel"
   }
 }

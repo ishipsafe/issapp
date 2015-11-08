@@ -6,6 +6,17 @@ import uuid
 # Create your models here.
 
 """
+Model: subscribe
+Table: ishipsafe_subscribe
+Data related to the people subscribed is available in this table
+"""
+class subscribe(models.Model):
+
+	subscribe_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+	email = models.CharField(max_length=256, unique=True)
+	role = models.CharField(max_length=256, null=False)
+
+"""
 Model: pricing
 Table: ishipsafe_pricing
 Contains data related to pricing
