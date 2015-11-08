@@ -21,6 +21,7 @@ module.exports = function(Subscribe){
     Subscribe.create(sub, function(err, instance){
       if (err){
         response = "Error while subscribing."
+        cb(null, response);
       }
       transporter.sendMail({
           from: 'ishipsafe@gmail.com',
@@ -29,7 +30,7 @@ module.exports = function(Subscribe){
           html: templateContent
       });
       response = "Subscribed successfully.";
-      return;
+      cb(null, response);
     });
 
   }
