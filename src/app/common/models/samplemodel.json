@@ -1,0 +1,51 @@
+{
+  "name": "Samplemodel",
+  "base": "PersistedModel",
+  "idInjection": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "postgresql": {
+    "schema": "public",
+    "table": "samplemodel"
+  },
+  "properties": {
+    "lastname": {
+      "type": "String",
+      "required": false,
+      "length": 1024,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "lastname",
+        "dataType": "character varying",
+        "dataLength": 1024,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "YES"
+      },
+      "_selectable": true
+    },
+    "firstname": {
+      "type": "String",
+      "id": true,
+      "required": true,
+      "length": 1024,
+      "precision": null,
+      "scale": null,
+      "postgresql": {
+        "columnName": "firstname",
+        "dataType": "character varying",
+        "dataLength": 1024,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "NO"
+      },
+      "_selectable": false
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

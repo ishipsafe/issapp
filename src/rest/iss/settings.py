@@ -80,7 +80,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'ishipsafe',
-        'USER': 'abhibel',
+        'USER': 'iss',
         'PASSWORD': '',
         'HOST': '',
         'PORT':''
@@ -115,3 +115,9 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny',
     ]
 }
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'ishipsafe@gmail.com'
+EMAIL_HOST_PASSWORD = 'goship#123'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

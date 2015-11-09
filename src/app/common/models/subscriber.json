@@ -1,0 +1,15 @@
+{
+  "name": "Subscriber",
+  "base": "PersistedModel",
+  "properties": {
+    "email": {
+      "type": "String",
+      "required": true,
+      "unique": true
+      },
+    "type": {
+      "type": "String",
+      "required": true
+      }
+  }
+}

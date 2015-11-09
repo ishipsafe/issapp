@@ -3,12 +3,12 @@
     "name": "db",
     "connector": "memory"
   },
-  "accountDs": {
+  "pg": {
     "host": "localhost",
     "port": 5432,
     "database": "ishipsafe",
-    "name": "accountDs",
+    "name": "pg",
     "connector": "postgresql",
-    "user": "vamseek"
+    "user": "iss"
   }
 }
