@@ -2,13 +2,13 @@ doctype
 html
   head
     title #{title} - iShipSafe
-    link(rel="stylesheet", href="/stylesheets/css/materialize.css", media="screen,projection")
-    link(rel="stylesheet", href="/stylesheets/css/style.css", media="screen,projection")
-    link(rel="stylesheet", href="/stylesheets/min/plugin-min.css", media="screen,projection")
-    link(rel="stylesheet", href="/stylesheets/min/custom-min.css", media="screen,projection")
+    link(rel="stylesheet", href="/css/materialize.css", media="screen,projection")
+    link(rel="stylesheet", href="/css/style.css", media="screen,projection")
+    link(rel="stylesheet", href="/min/plugin-min.css", media="screen,projection")
+    link(rel="stylesheet", href="/min/custom-min.css", media="screen,projection")
 
-    script(type="text/javascript" src="/stylesheets/min/plugin-min.js")
-    script(type="text/javascript" src="/stylesheets/min/custom-min.js")
+    script(type="text/javascript" src="/min/plugin-min.js")
+    script(type="text/javascript" src="/min/custom-min.js")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
@@ -38,7 +38,7 @@ html
         br
 
         .container(style="width:53%;")
-          a#logo-container.modal-trigger.btn-flat.btn-icon-main.waves-effect.waves-light(href="#Sender",style="color:#2196F3") 
+          a#logo-container.modal-trigger.btn-flat.btn-icon-main.waves-effect.waves-light(href="#Sender",style="color:#2196F3")
             i.material-icons Sender
           div#Sender.modal.modal-fixed-footer
             .modal-content
@@ -47,31 +47,30 @@ html
                 | We are the amazon of shipping.
                 | Super-low prices!!
                 | 60 % cheaper than FedEx, DHL. Even lower than Garudavega!!!!
-                | 
-                | Three easy steps: 
+                | Three easy steps:
                 ol
                   li Send email to iShipSafe@gmail.com. Where and what do you want to send to India?
                   li Know our super-low price estimates. We will pick up your items from your door.
                   li Delivery and Safety Guaranteed.
 
-          a#logo-container.modal-trigger.btn-flat.btn-icon-main.waves-effect.waves-light.right(href="#Flyer",style="color:#2196F3") 
+          a#logo-container.modal-trigger.btn-flat.btn-icon-main.waves-effect.waves-light.right(href="#Flyer",style="color:#2196F3")
             i.material-icons Flyer
           div#Flyer.modal.modal-fixed-footer
             .modal-content
               h4 Flyer
               P
                 | Take our stuff. Earn as much as 150 dollars per bag to India...Wooooow!!
-                | 
-                | Three easy steps: 
+                | Three easy steps:
                 ol
                   li Send email to iShipSafe@gmail.com. Where and when are you flying to India from bay area?
                   li Know your reward amount. We will drop off items at your door step in bay area.
                   li Take these items to India. We will pay you your reward amount that we promised.
-          p.heavy.center.black-text Be part of our early adopter program 
+          p.heavy.center.black-text Be part of our early adopter program
+          h6.heavy.center(style="color:#2196F3") #{message}
 
         div.container(style="width:70%;margin-right:100px")
-          h4.center.white-text 
-          form.col.s12.center(action="/", method="post")
+          h4.center.white-text
+          form.col.s12.center(action="/subscribe", method="get")
             .row
               .center.input-field.col.s6.black-text
                 i.mdi-communication-email.prefix.blue-text
@@ -100,7 +99,7 @@ html
                 img.activator(src="./img/Banglore.jpg")
               div.card-content
                 <span class="card-title activator grey-text text-darken-4">Banglore<i class="mdi-navigation-more-vert right"></i></span>
-                p 
+                p
                   a(href="#") Send
               div.card-reveal
                 <span class="card-title grey-text text-darken-4">Banglore <i class="mdi-navigation-close right"></i></span>
@@ -111,7 +110,7 @@ html
                 img.activator(src="./img/Calcutta.jpg")
               div.card-content
                 <span class="card-title activator grey-text text-darken-4">Banglore<i class="mdi-navigation-more-vert right"></i></span>
-                p 
+                p
                   a(href="#") Send
               div.card-reveal
                 <span class="card-title grey-text text-darken-4">Banglore <i class="mdi-navigation-close right"></i></span>
@@ -122,7 +121,7 @@ html
                 img.activator(src="./img/delhi_gate.jpg")
               div.card-content
                 <span class="card-title activator grey-text text-darken-4">Banglore<i class="mdi-navigation-more-vert right"></i></span>
-                p 
+                p
                   a(href="#") Send
               div.card-reveal
                 <span class="card-title grey-text text-darken-4">Banglore <i class="mdi-navigation-close right"></i></span>
@@ -133,7 +132,7 @@ html
                 img.activator(src="./img/hyderabad.jpg")
               div.card-content
                 <span class="card-title activator grey-text text-darken-4">Banglore<i class="mdi-navigation-more-vert right"></i></span>
-                p 
+                p
                   a(href="#") Send
               div.card-reveal
                 <span class="card-title grey-text text-darken-4">Banglore <i class="mdi-navigation-close right"></i></span>
@@ -144,7 +143,7 @@ html
                 img.activator(src="./img/chennai.jpg")
               div.card-content
                 <span class="card-title activator grey-text text-darken-4">Banglore<i class="mdi-navigation-more-vert right"></i></span>
-                p 
+                p
                   a(href="#") Send
               div.card-reveal
                 <span class="card-title grey-text text-darken-4">Banglore <i class="mdi-navigation-close right"></i></span>
@@ -155,7 +154,7 @@ html
                 img.activator(src="./img/Mumbai.jpg")
               div.card-content
                 <span class="card-title activator grey-text text-darken-4">Banglore<i class="mdi-navigation-more-vert right"></i></span>
-                p 
+                p
                   a(href="#") Send
               div.card-reveal
                 <span class="card-title grey-text text-darken-4">Banglore <i class="small mdi-navigation-close right"></i></span>

@@ -1,6 +1,6 @@
-module.exports = function(Subscribe){
+module.exports = function(Subscriber){
 
-  Subscribe.subscribe = function(email, type, cb){
+  Subscriber.subscribe = function(email, type, cb){
 
     var nodemailer = require('nodemailer');
     fs = require('fs')
@@ -18,24 +18,30 @@ module.exports = function(Subscribe){
       email: email,
       type: type
     }
-    Subscribe.create(sub, function(err, instance){
-      if (err){
-        response = "Error while subscribing."
+    Subscriber.create(sub, function(err, instance){
+      if (err.code == 23505){
+        console.log(err);
+        response = "User already subscribed."
+        cb(null, response);
+      }else if(err){
+        console.log(err);
+        response = "Error connecting to the database."
+        cb(null, response);
+      }else{
+        transporter.sendMail({
+            from: 'ishipsafe@gmail.com',
+            to: email,
+            subject: 'Welcome to iShipSafe',
+            html: templateContent
+        });
+        response = "Subscribed successfully.";
         cb(null, response);
       }
-      transporter.sendMail({
-          from: 'ishipsafe@gmail.com',
-          to: email,
-          subject: 'Welcome to iShipSafe',
-          html: templateContent
-      });
-      response = "Subscribed successfully.";
-      cb(null, response);
     });
 
   }
 
-  Subscribe.remoteMethod(
+  Subscriber.remoteMethod(
     'subscribe', {
       http: {path: '/subscribe', verb: 'get'},
       accepts: [{arg: 'email', type: 'string', http: {source: 'query'}}, {arg: 'type', type: 'string', http: {source: 'query'}}],

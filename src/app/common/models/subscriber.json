@@ -1,5 +1,5 @@
 {
-  "name": "Subscribe",
+  "name": "Subscriber",
   "base": "PersistedModel",
   "properties": {
     "email": {

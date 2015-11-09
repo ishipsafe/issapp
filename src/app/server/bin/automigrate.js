@@ -16,7 +16,7 @@ var accounts = [
 ];*/
 var dataSource = app.dataSources.pg;
 
-dataSource.automigrate('Subscribe', function(err) {
+dataSource.automigrate('Subscriber', function(err) {
   if (err) console.log(err);
 
   var Subscribe = app.models.Subscribe;
