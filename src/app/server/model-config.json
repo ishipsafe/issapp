@@ -145,5 +145,9 @@
   "IshipsafeSubscriber": {
     "dataSource": "pg",
     "public": true
+  },
+  "Subscriber": {
+    "dataSource": "pg",
+    "public": true
   }
 }
