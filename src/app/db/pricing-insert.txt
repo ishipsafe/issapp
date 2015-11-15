@@ -1,0 +1,106 @@
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 1, 0, 99, 19.99);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 1, 100, 199, 22.49);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 1, 200, 299, 24.99);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 1, 300, 10000, 27.49);
+
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 2, 0, 250, 24.99);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 2, 251, 500, 27.49);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 2, 501, 750, 29.99);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 2, 751, 10000, 32.49);
+
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 3, 0, 250, 29.99);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 3, 251, 500, 32.49);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 3, 501, 750, 34.99);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 3, 751, 10000, 37.49);
+
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 4, 0, 250, 34.99);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 4, 251, 500, 37.49);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 4, 501, 750, 39.99);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 4, 751, 10000, 42.49);
+
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 5, 0, 250, 39.99);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 5, 251, 500, 42.49);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 5, 501, 750, 44.99);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 5, 751, 10000, 47.49);
+
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 6, 0, 250, 44.99);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 6, 251, 500, 47.49);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 6, 501, 750, 49.99);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 6, 751, 10000, 52.49);
+
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 7, 0, 250, 49.99);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 7, 251, 500, 52.49);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 7, 501, 750, 54.99);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 7, 751, 10000, 57.49);
+
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 8, 0, 250, 54.99);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 8, 251, 500, 57.49);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 8, 501, 750, 59.99);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 8, 751, 10000, 62.49);
+
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 9, 0, 250, 57.49);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 9, 251, 500, 59.99);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 9, 501, 750, 62.49);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 9, 751, 10000, 64.99);
+
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 10, 0, 250, 59.99);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 10, 251, 500, 62.49);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 10, 501, 750, 64.99);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 10, 751, 10000, 67.49);
+
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 15, 0, 250, 74.99);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 15, 251, 500, 77.49);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 15, 501, 750, 79.99);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 15, 751, 10000, 82.49);
+
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 20, 0, 250, 84.99);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 20, 251, 500, 87.49);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 20, 501, 750, 89.99);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 20, 751, 10000, 92.49);
+
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 30, 0, 250, 104.99);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 30, 251, 500, 107.49);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 30, 501, 750, 109.99);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 30, 751, 10000, 112.49);
+
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 40, 0, 250, 124.99);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 40, 251, 500, 127.49);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 40, 501, 750, 129.99);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 40, 751, 10000, 132.49);
+
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 50, 0, 250, 144.99);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 50, 251, 500, 147.49);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 50, 501, 750, 149.99);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 50, 751, 1500, 152.49);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('misc', 50, 1501, 10000, 154.99);
+
+insert into pricing (item_type, weight, min_value, max_value, price) values ('non-core', 0-5, 0, 250, 25);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('non-core', 0-6, 251, 500, 50);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('non-core', 0-7, 501, 750, 75);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('non-core', 0-8, 751, 1000, 100);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('non-core', 0-9, 1001, 1500, 125);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('non-core', 0-10, 1501, 2000, 150);
+
+insert into pricing (item_type, weight, min_value, max_value, price) values ('iphone6', 16, 0, 0, 50);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('iphone6', 64, 0, 0, 60);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('iphone6', 128, 0, 0, 100);
+
+insert into pricing (item_type, weight, min_value, max_value, price) values ('iphone6-plus', 16, 0, 0, 60);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('iphone6-plus', 64, 0, 0, 75);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('iphone6-plus', 128, 0, 0, 125);
+
+insert into pricing (item_type, weight, min_value, max_value, price) values ('samsung-s6', 32, 0, 0, 100);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('samsung-s6', 64, 0, 0, 100);
+
+insert into pricing (item_type, weight, min_value, max_value, price) values ('laptop', 0, 0, 500, 50);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('laptop', 0, 501, 1000, 75);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('laptop', 0, 1000, 10000, 100);
+
+insert into pricing (item_type, weight, min_value, max_value, price) values ('liquor', 1-1, 0, 50, 15);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('liquor', 2-2, 0, 50, 25);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('liquor', 1-1, 50, 100, 20);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('liquor', 2-2, 50, 100, 40);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('liquor', 1-1, 100, 200, 30);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('liquor', 1-1, 200, 10000, 40);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('liquor', 2-2, 100, 200, 40);
+insert into pricing (item_type, weight, min_value, max_value, price) values ('liquor', 2-2, 200, 10000, 50);
