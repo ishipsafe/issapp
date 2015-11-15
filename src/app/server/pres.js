@@ -52,4 +52,22 @@ app.get('/subscribe', function (req, res){
     });
 });
 
+app.get('/pricing', function (req, res){
+
+    request.get({
+        headers: {'content-type' : 'application/json'},
+        url:     'http://0.0.0.0:3000/api/Pricings'
+    }, function(error, response, body){
+        console.log(body);
+        if(body){
+            var ndata = JSON.parse(body);
+            console.log(ndata);
+            res.json(ndata);
+        }else{
+            console.log("Dude error")
+        }
+
+    });
+});
+
 app.listen(3030)
