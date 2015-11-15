@@ -78,10 +78,10 @@ html
                 label.black-text(for="icon_email") Email-id
                 br
                 br
-                input#sender.black-text(type="checkbox")
-                label.black-text(for="sender") Sender
-                input#flyer.black-text(type="checkbox")
-                label.black-text(for="flyer") Flyer
+                input#sender.blue-text(type="checkbox", name="type", value="sender")
+                label(for="sender") Sender
+                input#flyer.blue-text(type="checkbox", name="type", value="flyer")
+                label(for="flyer") Flyer
               .col.input-field.offset-ssubmit
                 button.btn-flat.btn-icon-submit.waves-effect.waves-light(style="border: 1px solid #2196F3;color:#000000;height:75px", type="submit") Join Beta
                   i.mdi-content-send.right.blue-text
