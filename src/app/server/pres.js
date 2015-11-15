@@ -32,8 +32,6 @@ app.get('/', function (req, res) {
 
 app.get('/subscribe', function (req, res){
 
-    console.log(req.query.email);
-    console.log(req.query.type);
     request.get({
         headers: {'content-type' : 'application/json'},
         url:     'http://0.0.0.0:3000/api/Subscribers/subscribe/?email='+req.query.email+'&type='+req.query.type
@@ -52,24 +50,24 @@ app.get('/subscribe', function (req, res){
         }
 
     });
-
-    app.get('/pricing', function (req, res){
-
-        console.log(req.query.email);
-        console.log(req.query.type);
-        request.get({
-            headers: {'content-type' : 'application/json'},
-            url:     'http://0.0.0.0:3000/api/Pricings'
-        }, function(error, response, body){
-            console.log(body);
-            if(body){
-                var ndata = JSON.parse(body);
-                console.log(ndata);
-            }else{
-                console.log("Dude error");
-            }
-        });
 });
 
-//app.listen(3030)
-app.listen(80)
+app.get('/pricing', function (req, res){
+
+    request.get({
+        headers: {'content-type' : 'application/json'},
+        url:     'http://0.0.0.0:3000/api/Pricings'
+    }, function(error, response, body){
+        console.log(body);
+        if(body){
+            var ndata = JSON.parse(body);
+            console.log(ndata);
+            res.json(ndata);
+        }else{
+            console.log("Dude error")
+        }
+
+    });
+});
+
+app.listen(3030)
