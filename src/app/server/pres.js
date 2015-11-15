@@ -32,6 +32,8 @@ app.get('/', function (req, res) {
 
 app.get('/subscribe', function (req, res){
 
+    console.log(req.query.email);
+    console.log(req.query.type);
     request.get({
         headers: {'content-type' : 'application/json'},
         url:     'http://0.0.0.0:3000/api/Subscribers/subscribe/?email='+req.query.email+'&type='+req.query.type
@@ -52,4 +54,5 @@ app.get('/subscribe', function (req, res){
     });
 });
 
-app.listen(3030)
+//app.listen(3030)
+app.listen(80)

@@ -4,7 +4,7 @@ module.exports = function(Subscriber){
 
     var nodemailer = require('nodemailer');
     fs = require('fs')
-
+    console.log(type);
     templateContent = fs.readFileSync(require('path').resolve(__dirname, 'email.html'), encoding="utf8");
 
     var transporter = nodemailer.createTransport({
@@ -14,18 +14,22 @@ module.exports = function(Subscriber){
             pass: 'goship#123'
         }
     });
+    if (!type){
+      type = 'flyer';
+    }
     var sub = {
       email: email,
       type: type
     }
     Subscriber.create(sub, function(err, instance){
-      if (err.code == 23505){
+      console.log(err);
+      if (err && err.code == 23505){
         console.log(err);
         response = "User already subscribed."
         cb(null, response);
       }else if(err){
         console.log(err);
-        response = "Error connecting to the database."
+        response = "Oops something went wrong. Please try again after sometime."
         cb(null, response);
       }else{
         transporter.sendMail({

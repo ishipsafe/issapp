@@ -9,6 +9,6 @@
     "database": "ishipsafe",
     "name": "pg",
     "connector": "postgresql",
-    "user": "abhibel"
+    "user": "iss"
   }
 }
