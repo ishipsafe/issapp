@@ -10,7 +10,7 @@ class IShipSafeTest(unittest.TestCase):
         self.driver.get('http://ishipsafe.com')
         self.assertEqual(
             self.driver.title,
-            'iShipSafe')
+            'Home - iShipSafe')
 
     def test_homebutton(self):
         self.driver.get('http://ishipsafe.com')
@@ -19,6 +19,7 @@ class IShipSafeTest(unittest.TestCase):
         self.assertEqual(
             elem.text,
             'iShipSafe')
+        
  
     def tearDown(self):
         self.driver.close()
