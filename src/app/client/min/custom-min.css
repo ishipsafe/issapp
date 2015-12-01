@@ -1100,11 +1100,7 @@ input[type="button"].btn-block {
   text-decoration: none;
   color: #2196F3;
 }
- a:hover{
-  text-decoration: none;
-  color: #2196F3;
-
-}
+ 
 .blue-circle-button:visited {
 	color: #2196F3;
 	text-decoration: none;
