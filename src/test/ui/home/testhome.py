@@ -9,7 +9,6 @@ class IShipSafeTest(unittest.TestCase):
     def setUpClass(self):
         self.driver = webdriver.Firefox()
 
-                 
     @classmethod
     def tearDownClass(self):
         self.driver.close()
