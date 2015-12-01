@@ -393,6 +393,9 @@ input[type="button"].btn-block {
   .col-smm-pull-1 {
     right: 8.33333333%;
   }
+  .col-smm-pull-0-5 {
+    right: 4%;
+  }
   .col-smm-pull-0 {
     right: auto;
   }
@@ -422,6 +425,9 @@ input[type="button"].btn-block {
   }
   .col-smm-push-4 {
     left: 33.33333333%;
+  }
+  .col-smm-push-3-5 {
+    left: 28%;
   }
   .col-smm-push-3 {
     left: 25%;
@@ -1052,7 +1058,7 @@ input[type="button"].btn-block {
 .btn {
     display: inline-block;
     padding: 6px 12px;
-    margin-bottom: 0px;
+    margin-bottom: 20px;
     font-size: 14px;
     font-weight: 400;
     line-height: 0.8;
