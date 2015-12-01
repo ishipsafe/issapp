@@ -1032,13 +1032,47 @@ input[type="button"].btn-block {
   margin-left: 20px;
 }
 
+.btn-outline {
+    color: #563D7C;
+    background-color: transparent;
+
+}
+.btn-outline:hover {
+  font-size: 1.005em;
+  text-decoration: none;
+  border-color: #2196F3;
+  color: #2196F3;
+}
+.btn-group-lg > .btn, .btn-lg {
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.33333;
+    border-radius: 6px;
+}
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 0.8;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -moz-user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
 .blue-circle-button {
 	box-shadow: 2px 2px 6px 4px rgba(0,0,0,0.1);
   background-color: transparent;
 	font-size: 1em;
   line-height:9.5em;
 
-	color: #000000;
+	color: #2196F3;
 
 	margin-top: auto;
 	border-radius: 50%;
@@ -1048,12 +1082,25 @@ input[type="button"].btn-block {
 }
 .blue-circle-button:hover {
 
+  font-size: 1.005em;
 	text-decoration: none;
-	border-color: #00CCFF;
+	border-color: #2196F3;
+  color: #2196F3;
+  text-emphasis-color: #2196F3;
+  text-decoration-color: #2196F3;
+
+}
+.material-icons:hover{
+  text-decoration: none;
+  color: #2196F3;
+}
+ a:hover{
+  text-decoration: none;
+  color: #2196F3;
 
 }
 .blue-circle-button:visited {
-	color:#ffffff;
+	color: #2196F3;
 	text-decoration: none;
 
 }
