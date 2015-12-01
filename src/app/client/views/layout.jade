@@ -7,6 +7,7 @@ html
     link(rel="stylesheet", href="/min/plugin-min.css", media="screen,projection")
     link(rel="stylesheet", href="/min/custom-min.css", media="screen,projection")
 
+    script(src='/bootstrap/js/bootstrap.min.js')
     script(type="text/javascript" src="/min/plugin-min.js")
     script(type="text/javascript" src="/min/custom-min.js")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
@@ -19,6 +20,7 @@ html
       .navbar.transparent.navbar-inverse.navbar-fixed
         nav#nav_f.navbar-inner
           .container
+
             .nav-wrapper
               a#logo-container.brand-logo(href="#top") iShipSafe
               ul#nav-mobile.right.side-nav
@@ -35,60 +37,71 @@ html
         br
         br
         br
-        br
 
-        .container(style="width:53%;")
-          a#logo-container.modal-trigger.btn-flat.btn-icon-main.waves-effect.waves-light(href="#Sender",style="color:#000000")
-            i.material-icons Sender
-          div#Sender.modal.modal-fixed-footer
-            .modal-content
-              h4 Sender
-              P
-                | We are the amazon of shipping.
-                | Super-low prices!!
-                | 60 % cheaper than FedEx, DHL. Even lower than Garudavega!!!!
-                | Three easy steps:
-                ol
-                  li Send email to iShipSafe@gmail.com. Where and what do you want to send to India?
-                  li Know our super-low price estimates. We will pick up your items from your door.
-                  li Delivery and Safety Guaranteed.
+        .container
+          .row
+            .col-smm-6.col-smm-push-0.col-sm-6.col-md-6.col-md-push-2.col-sm-push-2.center-block.col-xs-push-2
+              a#logo-container.modal-trigger.btn.blue-circle-button.waves-effect.waves-light(href="#Sender")
+                i.material-icons Sender
+              div#Sender.modal.modal-fixed-footer
+                .modal-content
+                  h4 Sender
+                  P
+                    | We are the amazon of shipping.
+                    | Super-low prices!!
+                    | 60 % cheaper than FedEx, DHL. Even lower than Garudavega!!!!
+                    | Three easy steps:
+                    ol
+                      li Send email to iShipSafe@gmail.com. Where and what do you want to send to India?
+                      li Know our super-low price estimates. We will pick up your items from your door.
+                      li Delivery and Safety Guaranteed.
 
-          a#logo-container.modal-trigger.btn-flat.btn-icon-main.waves-effect.waves-light.right(href="#Flyer",style="color:#000000")
-            i.material-icons Flyer
-          div#Flyer.modal.modal-fixed-footer
-            .modal-content
-              h4 Flyer
-              P
-                | Take our stuff. Earn as much as 150 dollars per bag to India...Wooooow!!
-                | Three easy steps:
-                ol
-                  li Send email to iShipSafe@gmail.com. Where and when are you flying to India from bay area?
-                  li Know your reward amount. We will drop off items at your door step in bay area.
-                  li Take these items to India. We will pay you your reward amount that we promised.
-          p.heavy.center.black-text Be part of our early adopter program
-          h6.heavy.center(style="color:#2196F3") #{message}
+            .col-smm-6.col-smm-push-1.col-sm-6.col-md-6.col-md-push-0.col-sm-push-0.center-block.col-xs-push-2
+              a#logo-container.modal-trigger.btn.blue-circle-button.waves-effect.waves-light(href="#Flyer",style="color:#2196F3")
+                i.material-icons Flyer
+              div#Flyer.modal.modal-fixed-footer
+                .modal-content
+                  h4 Flyer
+                  P
+                    | Take our stuff. Earn as much as 150 dollars per bag to India...Wooooow!!
+                    | Three easy steps:
+                    ol
+                      li Send email to iShipSafe@gmail.com. Where and when are you flying to India from bay area?
+                      li Know your reward amount. We will drop off items at your door step in bay area.
+                      li Take these items to India. We will pay you your reward amount that we promised.
+          .row
+            .col-md-12.col-md-pull-0-5.col-smm-pull-0-5.center.heavy.black-text Be part of our early adopter program
+            .col-md-12.h6.heavy.center(style="color:#2196F3") #{message}
 
-        div.container(style="width:70%;margin-right:100px")
-          h4.center.white-text
-          form.col.s12.center(action="/subscribe", method="get")
-            .row
-              .center.input-field.col.s6.black-text
-                i.mdi-communication-email.prefix.blue-text
-                input#icon_email.validate.black-text(name="email" ,type="email")
-                label.black-text(for="icon_email") Email-id
-                br
-                br
-                input#sender.blue-text(type="checkbox", name="type", value="sender")
-                label(for="sender") Sender
-                input#flyer.blue-text(type="checkbox", name="type", value="flyer")
-                label(for="flyer") Flyer
-              .col.input-field.offset-ssubmit
-                button.btn-flat.btn-icon-submit.waves-effect.waves-light(style="border: 1px solid #2196F3;color:#000000;height:75px", type="submit") Join Beta
-                  i.mdi-content-send.right.blue-text
+          .row
+            h4.center.white-text
+            form(action="/subscribe", method="get")
+              .row
+                .col-sm-2
+                .col-sm-6.col-md-5.col-xs-pull-0.input-field.black-text
+                  i.mdi-communication-email.prefix.blue-text
+                  input#icon_email.validate.black-text(name="email" ,type="email")
+                  label.blue-text(for="icon_email") Email-id
+                  .row
+                    .col-md-4.col-smm-4
+                      input#sender.blue-text(type="checkbox")
+                      label(for="sender") Sender
+                    .col-md-4.col-smm-4
+                      input#flyer.blue-text(type="checkbox")
+                      label(for="flyer") Flyer
+                .col-sm-4
+
+                .col-md-2
+
+                .col-md-5.col-md-push-0.col-smm-push-7.input-field
+                  button.btn.btn-outline.btn-lg.waves-effect.waves-light(style="background-color:transparent;color:#2196F3;height:75px", type="submit") Join Beta
+                    i.mdi-content-send.right.blue-text
+
     div#intro.section.scrollspy
       .container
         .col.s12
-          h4.center.header.text_h2 We open up new <span class="span_h2">doors</span> for international shipments by providing an affordable, secure and innovative way to move items from <span class="span_h2"> US </span>to <span class="span_h2">India</span>
+          h4.center.header.text_h2
+            block content
     div#work.section.scrollspy
       .container
         h2.header.text_b Destinations
@@ -109,55 +122,55 @@ html
               div.card-image.waves-effect.waves-block.waves-light
                 img.activator(src="./img/Calcutta.jpg")
               div.card-content
-                <span class="card-title activator grey-text text-darken-4">Banglore<i class="mdi-navigation-more-vert right"></i></span>
+                <span class="card-title activator grey-text text-darken-4">Calcutta<i class="mdi-navigation-more-vert right"></i></span>
                 p
                   a(href="#") Send
               div.card-reveal
-                <span class="card-title grey-text text-darken-4">Banglore <i class="mdi-navigation-close right"></i></span>
+                <span class="card-title grey-text text-darken-4">Calcutta <i class="mdi-navigation-close right"></i></span>
                 p Click on this tile if you reside in this city or if you want to send a package to this city
           div.col.s12.m4.l4
             div.card
               div.card-image.waves-effect.waves-block.waves-light
                 img.activator(src="./img/delhi_gate.jpg")
               div.card-content
-                <span class="card-title activator grey-text text-darken-4">Banglore<i class="mdi-navigation-more-vert right"></i></span>
+                <span class="card-title activator grey-text text-darken-4">Delhi<i class="mdi-navigation-more-vert right"></i></span>
                 p
                   a(href="#") Send
               div.card-reveal
-                <span class="card-title grey-text text-darken-4">Banglore <i class="mdi-navigation-close right"></i></span>
+                <span class="card-title grey-text text-darken-4">Delhi <i class="mdi-navigation-close right"></i></span>
                 p Click on this tile if you reside in this city or if you want to send a package to this city
           div.col.s12.m4.l4
             div.card
               div.card-image.waves-effect.waves-block.waves-light
                 img.activator(src="./img/hyderabad.jpg")
               div.card-content
-                <span class="card-title activator grey-text text-darken-4">Banglore<i class="mdi-navigation-more-vert right"></i></span>
+                <span class="card-title activator grey-text text-darken-4">Hyderabad<i class="mdi-navigation-more-vert right"></i></span>
                 p
                   a(href="#") Send
               div.card-reveal
-                <span class="card-title grey-text text-darken-4">Banglore <i class="mdi-navigation-close right"></i></span>
+                <span class="card-title grey-text text-darken-4">Hyderabad <i class="mdi-navigation-close right"></i></span>
                 p Click on this tile if you reside in this city or if you want to send a package to this city
           div.col.s12.m4.l4
             div.card
               div.card-image.waves-effect.waves-block.waves-light
                 img.activator(src="./img/chennai.jpg")
               div.card-content
-                <span class="card-title activator grey-text text-darken-4">Banglore<i class="mdi-navigation-more-vert right"></i></span>
+                <span class="card-title activator grey-text text-darken-4">Chennai<i class="mdi-navigation-more-vert right"></i></span>
                 p
                   a(href="#") Send
               div.card-reveal
-                <span class="card-title grey-text text-darken-4">Banglore <i class="mdi-navigation-close right"></i></span>
+                <span class="card-title grey-text text-darken-4">Chennai <i class="mdi-navigation-close right"></i></span>
                 p Click on this tile if you reside in this city or if you want to send a package to this city
           div.col.s12.m4.l4
             div.card
               div.card-image.waves-effect.waves-block.waves-light
                 img.activator(src="./img/Mumbai.jpg")
               div.card-content
-                <span class="card-title activator grey-text text-darken-4">Banglore<i class="mdi-navigation-more-vert right"></i></span>
+                <span class="card-title activator grey-text text-darken-4">Mumbai<i class="mdi-navigation-more-vert right"></i></span>
                 p
                   a(href="#") Send
               div.card-reveal
-                <span class="card-title grey-text text-darken-4">Banglore <i class="small mdi-navigation-close right"></i></span>
+                <span class="card-title grey-text text-darken-4">Mumbai <i class="small mdi-navigation-close right"></i></span>
                 p Click on this tile if you reside in this city or if you want to send a package to this city
 
     footer#contact.page-footer.default_color.scrollspy
