@@ -3,12 +3,14 @@ import unittest
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
  
+ 
 class IShipSafeTest(unittest.TestCase):
 
     @classmethod
     def setUpClass(self):
         self.driver = webdriver.Firefox()
 
+                 
     @classmethod
     def tearDownClass(self):
         self.driver.close()
@@ -73,10 +75,43 @@ class IShipSafeTest(unittest.TestCase):
         except NoSuchElementException:
             print("*** element not found** ")
             self.assertTrue(False, "element not found")
-                            
-   
 
-    
+    def test_flyer_overlay(self):
+        self.driver.get('http://ishipsafe.com')
+        try:
+            elem1 = self.driver.find_element_by_css_selector("#logo-container[href='#Flyer']")
+            elem1.click()
+            time.sleep(2)
+            elem2 = self.driver.find_element_by_id("Flyer")
+            style = elem2.get_attribute('style')
+            print(style)
+            self.assertEqual("display: block; top: 10%; opacity: 1;", style, "overlay is not shown")
+                  
+        except NoSuchElementException:
+            print("*** element not found** ")
+            self.assertTrue(False, "element not found")
+
+    def test_sender_overlay_header(self):
+        self.driver.get('http://ishipsafe.com')
+        try:
+            elem = self.driver.find_element_by_css_selector("#Sender div h4")
+            self.assertEqual("Sender", elem.get_attribute('innerHTML'))
+        except NoSuchElementException:
+            print("*** element not found** ")
+            self.assertTrue(False, "element not found")
+
+    def test_sender_overlay_paragraph(self):
+        self.driver.get('http://ishipsafe.com')
+        try:
+            elem = self.driver.find_element_by_css_selector("#Sender div p")
+            t = elem.get_attribute('innerHTML')
+            print(t)
+            #self.assertEqual("", elem.get_attribute('innerHTML'))
+        except NoSuchElementException:
+            print("*** element not found** ")
+            self.assertTrue(False, "element not found")        
+           
+                            
 
 if __name__ == '__main__':
     unittest.main()
