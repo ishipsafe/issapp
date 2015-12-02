@@ -105,11 +105,93 @@ class IShipSafeTest(unittest.TestCase):
         try:
             elem = self.driver.find_element_by_css_selector("#Sender div p")
             t = elem.get_attribute('innerHTML')
-            print(t)
-            #self.assertEqual("", elem.get_attribute('innerHTML'))
+            self.assertEqual("We are the amazon of shipping.\nSuper-low prices!!\n60 % cheaper than FedEx, DHL. Even lower than Garudavega!!!!\nThree easy steps:",t)
         except NoSuchElementException:
             print("*** element not found** ")
-            self.assertTrue(False, "element not found")        
+            self.assertTrue(False, "element not found")
+
+    def test_sender_overlay_orderlist1(self):
+        self.driver.get('http://ishipsafe.com')
+        try:
+            elem = self.driver.find_element_by_css_selector("#Sender div ol li:nth-child(1)")
+            t = elem.get_attribute('innerHTML')
+            self.assertEqual("Send email to iShipSafe@gmail.com. Where and what do you want to send to India?", elem.get_attribute('innerHTML'))
+        except NoSuchElementException:
+            print("*** element not found** ")
+            self.assertTrue(False, "element not found")
+
+    def test_sender_overlay_orderlist2(self):
+        self.driver.get('http://ishipsafe.com')
+        try:
+            elem = self.driver.find_element_by_css_selector("#Sender div ol li:nth-child(2)")
+            t = elem.get_attribute('innerHTML')
+            self.assertEqual("Know our super-low price estimates. We will pick up your items from your door.", elem.get_attribute('innerHTML'))
+        except NoSuchElementException:
+            print("*** element not found** ")
+            self.assertTrue(False, "element not found")
+
+    def test_sender_overlay_orderlist3(self):
+        self.driver.get('http://ishipsafe.com')
+        try:
+            elem = self.driver.find_element_by_css_selector("#Sender div ol li:nth-child(3)")
+            t = elem.get_attribute('innerHTML')
+            self.assertEqual("Delivery and Safety Guaranteed.", elem.get_attribute('innerHTML'))
+        except NoSuchElementException:
+            print("*** element not found** ")
+            self.assertTrue(False, "element not found")
+
+    def test_flyer_overlay_header(self):
+        self.driver.get('http://ishipsafe.com')
+        try:
+            elem = self.driver.find_element_by_css_selector("#Flyer div h4")
+            self.assertEqual("Flyer", elem.get_attribute('innerHTML'))
+        except NoSuchElementException:
+            print("*** element not found** ")
+            self.assertTrue(False, "element not found")
+
+    def test_flyer_overlay_paragraph(self):
+        self.driver.get('http://ishipsafe.com')
+        try:
+            elem = self.driver.find_element_by_css_selector("#Flyer div p")
+            t = elem.get_attribute('innerHTML')
+            self.assertEqual("Take our stuff. Earn as much as 150 dollars per bag to India...Wooooow!!\nThree easy steps:", elem.get_attribute('innerHTML'))
+        except NoSuchElementException:
+            print("*** element not found** ")
+            self.assertTrue(False, "element not found")
+
+    def test_flyer_overlay_orderlist1(self):
+        self.driver.get('http://ishipsafe.com')
+        try:
+            elem = self.driver.find_element_by_css_selector("#Flyer div ol li:nth-child(1)")
+            t = elem.get_attribute('innerHTML')
+            self.assertEqual("Send email to iShipSafe@gmail.com. Where and when are you flying to India from bay area?", elem.get_attribute('innerHTML'))
+        except NoSuchElementException:
+            print("*** element not found** ")
+            self.assertTrue(False, "element not found")
+
+    def test_flyer_overlay_orderlist2(self):
+        self.driver.get('http://ishipsafe.com')
+        try:
+            elem = self.driver.find_element_by_css_selector("#Flyer div ol li:nth-child(2)")
+            t = elem.get_attribute('innerHTml')
+            self.assertEqual("Know your reward amount. We will drop off items at your door step in bay area.", elem.get_attribute('innerHTML'))
+        except NoSuchElementException:
+            print("*** element not found** ")
+            self.assertTrue(False, "element not found")
+
+    def test_flyer_overlay_orderlist3(self):
+        self.driver.get('http://ishipsafe.com')
+        try:
+            elem = self.driver.find_element_by_css_selector("#Flyer div ol li:nth-child(3)")
+            t = elem.get_attribute('innerHTML')
+            self.assertEqual("Take these items to India. We will pay you your reward amount that we promised.", elem.get_attribute('innerHTML'))
+        except NoSuchElementException:
+            print("*** element not found** ")
+            self.assertTrue(False, "element not found")
+
+            
+
+            
            
                             
 
