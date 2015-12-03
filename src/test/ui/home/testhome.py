@@ -22,7 +22,7 @@ class IShipSafeTest(unittest.TestCase):
         self.driver.get('http://ishipsafe.com')
         self.assertEqual(
             self.driver.title,
-            'Home - iShipSafe')
+            'Home - iShipSafex')
             
     def test_iShipSafe(self):
         self.driver.get('http://ishipsafe.com')
