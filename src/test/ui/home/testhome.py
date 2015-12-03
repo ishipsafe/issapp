@@ -2,6 +2,7 @@ import time
 import unittest
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.keys import Keys
  
  
 class IShipSafeTest(unittest.TestCase):
@@ -189,11 +190,86 @@ class IShipSafeTest(unittest.TestCase):
             print("*** element not found** ")
             self.assertTrue(False, "element not found")
 
-            
+    def test_adoption_program_line(self):
+        self.driver.get('http://ishipsafe.com')
+        try:
+            elem = self.driver.find_element_by_css_selector("div.col-md-12.col-md-pull-0-5")
+            t = elem.get_attribute('innerHTML')
+            self.assertEqual("Be part of our early adopter program",t)
 
-            
-           
-                            
+        except NoSuchElementException:
+            print("*** element not found** ")
+            self.assertTrue(False, "element not found")
 
+    def test_email_logo(self):
+        self.driver.get('http://ishipsafe.com')
+        try:
+            self.driver.find_element_by_css_selector("i.mdi-communication-email")
+
+        except NoSuchElementException:
+            print("*** element not found** ")
+            self.assertTrue(False, "element not found")
+
+    def test_email_default_text(self):
+        self.driver.get('http://ishipsafe.com')
+        try:
+            elem = self.driver.find_element_by_css_selector("label.blue-text")
+            self.assertEqual("Email-id", elem.text)
+
+        except NoSuchElementException:
+            print("*** element not found** ")
+            self.assertTrue(False, "element not found")
+
+    def test_email_user_entered_text(self):
+        self.driver.get('http://ishipsafe.com')
+        try:
+            elem = self.driver.find_element_by_css_selector("#icon_email")
+            elem.send_keys("hello@IshipSafe")
+            self.assertEqual("hello@IshipSafe", elem.get_attribute('value'))
+            
+        except NoSuchElementException:
+            print("*** element not found** ")
+            self.assertTrue(False, "element not found")
+
+    def test_join_beta_button_exist(self):
+        self.driver.get('http://ishipsafe.com')
+        try:
+            elem = self.driver.find_element_by_css_selector("button.btn")
+            self.assertEqual("JOIN BETA", elem.text)
+                
+        except NoSuchElementException:
+            print("*** element not found** ")
+            self.assertTrue(False, "element not found")
+
+    def test_sender_checkbox(self):
+        self.driver.get('http://ishipsafe.com')
+        try:
+            elem = self.driver.find_element_by_css_selector("label[for='sender']")
+            self.assertEqual("Sender", elem.text)
+
+        except NoSuchElementException:
+            print("*** element not found** ")
+            self.assertTrue(False, "element not found")
+
+    def test_flyer_checkbox(self):
+        self.driver.get('http://ishipsafe.com')
+        try:
+            elem = self.driver.find_element_by_css_selector("label[for='flyer']")
+            self.assertEqual("Flyer", elem.text)
+
+        except NoSuchElementException:
+            print("*** element not found** ")
+            self.assertTrue(False, "element not found")
+
+    def test_background_image(self):
+        self.driver.get('http://ishipsafe.com')
+        try:
+            elem = self.driver.find_element_by_css_selector("#index-banner")
+
+        except NoSuchElementException:
+            print("*** element not found** ")
+            self.assertTrue(False, "element not found")           
+               
+                          
 if __name__ == '__main__':
     unittest.main()
