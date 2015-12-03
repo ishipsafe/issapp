@@ -9,9 +9,11 @@ class IShipSafeTest(unittest.TestCase):
 
     @classmethod
     def setUpClass(self):
-        self.driver = webdriver.Firefox()
+        self.driver = webdriver.Remote(
+            desired_capabilities=webdriver.DesiredCapabilities.FIREFOX,
+            command_executor='http://24.23.198.139:4444/wd/hub'
+            )
 
-                 
     @classmethod
     def tearDownClass(self):
         self.driver.close()
