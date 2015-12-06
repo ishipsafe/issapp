@@ -20,7 +20,8 @@ class IShipSafeTest(unittest.TestCase):
             desired_capabilities=webdriver.DesiredCapabilities.FIREFOX,
             command_executor='http://24.23.198.139:4444/wd/hub'
             )
-
+        
+        
     @classmethod
     def tearDownClass(self):
         self.driver.close()
@@ -28,7 +29,7 @@ class IShipSafeTest(unittest.TestCase):
     def test_title(self):
         self.driver.get('http://ishipsafe.com')
         self.assertEqual(
-            'Home - iShipSafex',
+            'Home - iShipSafe',
             self.driver.title)
             
     def test_iShipSafe(self):
@@ -248,8 +249,33 @@ class IShipSafeTest(unittest.TestCase):
             elem = self.driver.find_element_by_css_selector("#index-banner")
 
         except NoSuchElementException:
-            self.assertTrue(False, "element not found")           
-               
+            self.assertTrue(False, "element not found")
+
+    def test_email_functionality_test1(self):
+        self.driver.get('http://ishipsafe.com')
+        try:
+            button = self.driver.find_element_by_css_selector("button.btn")
+            button.click()
+            elem_msg = self.driver.find_element_by_css_selector("div.col-md-12.h6")
+            time.sleep(2)
+            self.assertEqual("Oops something went wrong. Please try again after sometime.", elem_msg.text)
+
+        except NoSuchElementException:
+            self.assertTrue(False, "element not found")
+
+    def test_email_functionality_test2(self):
+        self.driver.get('http://ishipsafe.com')
+        try:
+            elem = self.driver.find_element_by_css_selector("#icon_email")
+            elem.send_keys("hello@IshipSafe")
+            button = self.driver.find_element_by_css_selector("button.btn")               
+            button.click()
+            elem_msg = self.driver.find_element_by_css_selector("div.col-md-12.h6")
+            time.sleep(2)
+            self.assertEqual("User already subscribed.", elem_msg.text)
+
+        except NoSuchElementException:
+            self.assertTrue(False, "element not found")              
                           
 if __name__ == '__main__':
     unittest.main()
