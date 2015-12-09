@@ -275,7 +275,21 @@ class IShipSafeTest(unittest.TestCase):
             self.assertEqual("User already subscribed.", elem_msg.text)
 
         except NoSuchElementException:
-            self.assertTrue(False, "element not found")              
+            self.assertTrue(False, "element not found")
+
+    '''
+    def test_email_tooltip1(self):
+        self.driver.get('http://ishipsafe.com')
+        try:
+            email = self.driver.find_element_by_css_selector("#icon_email")
+            email.send_keys("hello")
+            tooltip = self.driver.find_element_by_css_selector("#window-resizer-tooltip")
+            print(tooltip.text)
+
+        except NoSuchElementException:
+            self.assertTrue(False, "element not found")
+
+    '''
                           
 if __name__ == '__main__':
     unittest.main()
