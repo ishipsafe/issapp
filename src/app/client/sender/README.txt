@@ -1,0 +1,2 @@
+- Sender folder currently contains all assets (and web links) required to render sender index screen.
+- This folder will be merged into "client" folder after "a version" of sender screens are developed.
