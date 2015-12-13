@@ -1,0 +1,43 @@
+.container{
+    width: 1440px;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #FFFFFF;
+}
+.logo{
+    width: 213px;
+    height: 45px;
+    padding: 10px 10px 5px 10px;
+}
+#rectangle{
+    border: 3px solid #C02942;
+}
+.track-status{
+    width: 672px;
+    height: 88px;
+    padding: 70px 140px 118px 144px;
+    float: left;
+}
+.summary-base{
+    border: 1px solid rgba(77,77,77,0.50);
+    padding: 14px 0px 0px 0px;
+}
+#cart-base{
+    width: 480px;
+    height: 216px;
+    float: left;
+}
+#from-to-search{
+    width: 1380px;
+    height: 183px;
+    clear: both;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+#add-items{
+    width: 1380px;
+    height: 400px;
+    clear: both;
+    padding-left: 30px;
+    padding-right: 30px;
+}
